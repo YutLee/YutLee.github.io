@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* ============================== 重置 ============================== */
+html { height: 100%; font-size: 12px; line-height: 20px; font-family: Arial, Simsun, sans-serif; background: #fff; color: #666;}
+body { height: 100%; position: relative; margin: 0;}
+/* ============================== 库 ============================== */
+.ku_fix { zoom: 1;}
+.ku_fix:after { display: block; content: ""; height: 0; clear: both; overflow: hidden; visibility: hidden;}
+.ku_pos_r{ position:relative; }
+/* ============================== 框架 ============================== */
+.site_w{width: 1200px; margin: auto;}
+/* ============================== 当前 ============================== */
+a{ text-decoration: none; color: #333;}
+dl{ margin: 0;}
+dt{ margin: 0;}
+dd{ margin: 0;}
+h4{ margin: 0;}
+ul{ list-style-type:none; margin: 0; padding: 0;}
+li{ margin: 0;}
+/*头像*/
+.page_menu_menu{ background:#f8f8f8;}
+.page_menu_menu .top{background:#FFF; border-bottom:1px solid #eee;height: 130px;position: relative;}
+.page_menu_menu .my_info{background:#E37D00;height: 50px;}
+.page_menu_menu .my_info .pic-txt{height: 100px;left: 50%;margin-left: -45px;position: absolute;top: 10px; text-align:center;}
+.page_menu_menu .my_info span{ background:#fff; display:block; width:60px; height:60px; overflow:hidden;box-shadow:0 5px 3px rgba(0, 0, 0, 0.3); text-align:center; border-radius:50px; padding:5px; margin:0 0 10px 10px;}
+.page_menu_menu .my_info span img{ width:100%; border-radius:50px; }
+.page_menu_menu .my_name{color:#999;font-size:1.2em; text-shadow:0 1px 0 rgba(0, 0, 0, 0.1);}
+.page_menu_menu .clickOpen{border-top: 1px solid #eee;margin-top:20px;}
+.page_menu_menu .clickOpen li{width:25%;float:left;}
+.page_menu_menu .clickOpen a{ background:#fff;display:block;height:79px;text-align:center;padding-top:10px;border-right:1px solid #eee;border-bottom:1px solid #eee;}
+.page_menu_menu .clickOpen a:active{background:#ebebeb;}
+.page_menu_menu .clickOpen a img{width:30px; height:30px;}
+.page_menu_menu .clickOpen a span{display:block;line-height:30px;}
+.page_menu_menu .new_list { background:#fff; margin-top:20px; border-top:1px solid #eee;}
+.page_menu_menu .new_list li{ border-bottom: 1px solid #EEEEEE;display: block;font-weight: normal;height: 50px;line-height: 50px;position: relative;}
+.page_menu_menu .new_list li a{display: block;font-size: 17px;padding-left: 10px;position: relative;}
+.page_menu_menu .new_list li .arrow{ text-align:center; height:100%; width:42px; display:block; cursor:pointer;float: right; width:42px; position: absolute; top: 0; right: 0;}
+.page_menu_menu .new_list li .arrow:after{ vertical-align: middle; content: ""; display: inline-block;
+	border-color: #ccc;border-style: solid;border-width: 0 2px 2px 0;
+	border-width: 0 2px 2px 0; height:6px; width:6px; margin-top:-2px;
+	transform: rotate(-45deg);-webkit-transform: rotate(-45deg);-ms-transform: rotate(-45deg);transform: rotate(-45deg);
+}
+.page_menu_menu .logout{padding:20px 5px;}
+.page_menu_menu .logout button{background-color:#fe7000;border:medium none;border-radius:2px;box-shadow:0 1px 1px rgba(0, 0, 0, 0.1);color:#fff;cursor:pointer;font-size:20px;height:36px;line-height:36px;
+    margin: 0;overflow: visible;padding:0;position: relative;vertical-align:top;width:100%;}
+button.style{ background-color:#FE7000; color:#fff; border:none;}
+button.style:hover{ background-color:#FF8800; box-shadow:inset 0 -2px 0 rgba(0,0,0,.2);}
+button.style:active{ background-color:#fe4e00; box-shadow:inset 0 2px 0 rgba(0,0,0,.2);}
+button[disabled].style{ opacity:.5; cursor:default;}
+button[disabled].style:hover{ background-color:#FE7000; box-shadow:none;}
+button[disabled].style:active{ background-color:#FE7000; box-shadow:none;}

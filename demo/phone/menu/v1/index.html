@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title></title>
+    <link rel="stylesheet" href="css/index.css?v=201312311625"/>
+    <style>
+	.page_h{background:#E37D00; z-index:10; height: 50px;position: relative;}
+	.page_h .hmenu {bottom: 0;line-height: 50px;position: absolute;right: 0;text-align: center;top: 0;width: 50px;}
+	.page_h .hmenu .icon {display: inline-block;vertical-align: middle;}
+	.page_h .hmenu .icon i{background:#fff;display: block;height: 3px;margin-bottom: 4px;width: 20px;}
+	.page_h .history {bottom: 0;position: absolute;right: 50px;top: 0;width: 50px;}
+	.page_h .history em{background:#fff;height: 3px;left: 50%;margin-left: -10px;position: absolute;top: 23px;width: 20px;}
+	.page_h .history i{ border-color:#fff; border-style: solid; border-width: 3px 0 0 3px; 
+	height: 10px; width: 10px; display: inline-block; position: absolute; left: 15px; top: 18px;
+	transform: rotate(-45deg);-webkit-transform: rotate(-45deg);-ms-transform: rotate(-45deg);transform: rotate(45deg);}
+	.page_h .htitle{display:none;}
+	
+	</style>
+</head>
+<body>
+	<div class="page_h ku_fix">
+        <a onclick="History.back();" href="javascript:void(0);" class="history"><i></i><em></em></a>
+        <a href="http://192.168.0.8:81/100msh_mshop/menu/menu" class="hmenu"><span class="icon"><i></i><i></i><i></i></span></a>
+    </div>
+    <div class="page_menu_menu">
+        <div class="top">
+            <div class="my_info">
+            	<div class="pic-txt">
+                    <span><img src="img/10.jpg"></span>
+                    <div class="my_name">13888888888</div>
+                </div>
+            </div>
+            <div class="logout">
+                <a  href="__ROOT__/user/logout">退出</a>
+                <a href="__ROOT__/user/login" style="display:none;">登陆</a>
+            </div>
+        </div>
+        <ul class="clickOpen ku_fix">
+        	<li><a><img src="img/3.png"><span>美食</span></a></li>
+            <li><a><img src="img/5.png"><span>娱乐</span></a></li>
+            <li><a><img src="img/1.png"><span>所有商家</span></a></li>
+            <li><a href="__ROOT__/goods/glist"><img src="img/4.png"><span>所有商品</span></a></li>
+            <li><a><img src="img/3.png"><span>美食</span></a></li>
+            <li><a><img src="img/2.png"><span>购物</span></a></li>
+            <li><a href="__ROOT__/store/slist"><img src="img/1.png"><span>所有商家</span></a></li>
+            <li><a href="__ROOT__/goods/glist"><img src="img/4.png"><span>所有商品</span></a></li>
+        </ul>
+        <ul class="new_list">
+        	<li><a>会员中心</a><span class="arrow rotate"></span></li>
+            <li><a>收货地址</a><span class="arrow rotate"></span></li>
+            <li><a>优惠券</a><span class="arrow rotate"></span></li>
+        </ul>
+    </div>    
+</body>
+</html>

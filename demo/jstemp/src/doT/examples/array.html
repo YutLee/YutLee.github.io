@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>doT</title>
+	<script type="text/javascript" src="../src/js/doT.min.js"></script>
+</head>
+<body>
+	<h2>数组数据迭代</h2>
+	<p>当需要替换的数据是数组时应该总是使用如下写法，禁止使用 for...in 进行迭代</p>
+	<div class="demo"></div>
+	<script type="text/html" id="temp">
+		{{~it.array :value:index}}
+		<div>{{=value}}!</div>
+		{{~}}
+	</script>
+	<script>
+		//上面模板依次等同于
+		//{{~it.array :value:index}}  等同于 {{for (var index = 0; index < it.array.length; index++) { }}
+		//{{=value}}				  等同于 {{=it.array[index]}}
+		//{{~}}                       等同于 {{ } }}
+
+		var data = {'array':['banana','apple','orange']};
+		var temp = document.getElementById('temp').innerHTML;
+		var tempFn = doT.template(temp);
+		var resultHtml = tempFn(data);
+		document.getElementsByClassName('demo')[0].innerHTML = resultHtml;
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿@charset "utf-8";
+/* ============================== 重置 ============================== */
+html {
+	height: 100%;
+	font-size: 12px;
+	line-height: 20px;
+	font-family: Arial, Simsun, sans-serif;
+	background: #fff;
+	color: #666;
+}
+body {
+	height: 100%;
+	position: relative;
+	margin: 0;
+}
+img{ vertical-align: top;}
+/* ============================== 库 ============================== */
+.ku_fix {
+	zoom: 1;
+}
+.ku_fix:after {
+	display: block;
+	content: "";
+	height: 0;
+	clear: both;
+	overflow: hidden;
+	visibility: hidden;
+}
+/* ============================== 框架 ============================== */
+.site_w{width: 1200px; margin: auto;}
+/* ============================== 当前 ============================== */
+.title{ position: relative; border-bottom: 3px solid #ededf0; line-height: 20px;}
+.title>i{ width: 15px; height: 20px; position: absolute; left: 0; top: 10px; background: url(../img/fire.png) no-repeat 0 0;}
+.title .titleText{ }
+.title .titleText h1{ float: left; font-size: 16px; color: #000; padding: 11px 0 9px 26px; margin: 0 20px 0 0;}
+.title .titleText a{ float: left; padding: 12px 12px 8px 12px; color: #666; text-decoration: none; position: relative;}
+.title .titleText a:hover{color: #000;}
+.title .titleText a i{ position: absolute; right: 0; top: 18px; line-height: 0; font-size: 0; overflow: hidden;
+	border-width: 4px; border-style: solid; border-color: transparent transparent transparent #999;
+}
+.title .titleText em{ float: left; padding: 12px 0px 0px 0px; color: #e5e5e5;}

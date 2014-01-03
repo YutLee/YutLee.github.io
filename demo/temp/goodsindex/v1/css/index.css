@@ -1,0 +1,152 @@
+﻿@charset "utf-8";
+/* ============================== 重置 ============================== */
+html { height: 100%; font-size: 12px; line-height: 20px; font-family: Arial, Simsun, sans-serif; background: #f5f5f5; color: #404040; overflow-y: scroll;}
+body { height: 100%; position: relative; margin: 0;}
+a{ text-decoration: none;}
+/* ============================== 库 ============================== */
+.ku_fix { zoom: 1;}
+.ku_fix:after { display: block; content: ""; height: 0; clear: both; overflow: hidden; visibility: hidden;}
+.ku_pos_r{ position:relative; }
+/* ============================== 框架 ============================== */
+.site_w{width: 1200px; margin: auto;}
+/* ============================== 基本模块 ============================== */
+/*输入*/
+.mod_ib { position: relative; padding: 0 18px 0 0;}
+.mod_ib input { zoom: 1; height: 16px; line-height: 16px; vertical-align: top; outline: 0; width: 100%; padding: 6px 8px; 
+                border: 1px solid #d5d5d5; background: #fff; box-shadow: inset 0 1px 0 rgba(0,0,0,.05);
+              }
+.mod_ib input:hover { border-color: #aaaaaa;}
+.mod_ib input:focus { border-color: #aaaaaa; box-shadow: inset 1px 1px 0 rgba(0,0,0,.1);}
+/* 按钮 */
+button { position: relative; background-color: #fff; margin: 0; padding: 0; /* outline:none; */ font-weight: bold; color: #333; 
+         cursor: pointer; vertical-align: top; overflow: visible; height: 30px; line-height: 32px\0; *line-height:28px; width: auto;
+         width: 72px; box-shadow: 0 1px 0 rgba(0,0,0,.05); border: 1px solid #d9d9d9; border-radius: 2px;
+       }
+button:hover { border-color: #b8b8b8; }
+button:active { background-color: #e5e5e5; box-shadow: inset 0 1px 1px rgba(0,0,0,.1);}
+button[disabled] { opacity: .5; cursor: default;}
+button[disabled]:hover { border-color: #d9d9d9;}
+button[disabled]:active { background-color: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.05);}
+/* 风格 */
+button.style { background-color: #b3c833; color: #fff; border: none;}
+button.style:hover { background-color: #c1d739; box-shadow: inset 0 -2px 0 rgba(0,0,0,.2);}
+button.style:active { background-color: #96aa39; box-shadow: inset 0 2px 0 rgba(0,0,0,.2);}
+button[disabled].style:hover { background-color: #b3c833; box-shadow: none;}
+button[disabled].style:active { background-color: #b3c833; box-shadow: none;}
+/* ============================== 当前 ============================== */
+.goodsindex{ position: relative;}
+.goodsindex .goodsbase{ background-color: #fff; width: 990px; position: relative; z-index: 1;
+	box-shadow: 0 0 10px 1px rgba(190,189,189,.74); z-index: 100; min-height: 670px;
+	background-repeat: repeat-y; background-position: 460px 0; background-image: url(../img/bg.png);
+}
+/*商品基本信息*/
+.goodsindex .goodsbase .buyinfowarp{ float: left; width: 100%;}
+.goodsindex .goodsbase .buyinfo{ padding: 0 0 0 460px;}
+/*标题*/
+.goodsindex .goodsbase .buyinfo .titlesail{ padding: 25px 20px 21px;}
+.goodsindex .goodsbase .buyinfo h1{ font-size: 18px; line-height: 1.1; color: #000; font-family: tahoma,arial,\5FAE\8F6F\96C5\9ED1,sans-serif; margin: 0; }
+.goodsindex .goodsbase .buyinfo .sailsay{ color: #754; line-height: 1.5; padding-top: 5px;}
+/*价格*/
+.goodsindex .goodsbase .price{ background:#db362e url(../img/pricebg.png) 0 0 no-repeat; height: 79px; width: 100%; padding-right: 4px;}
+.goodsindex .goodsbase .price .pn{ width: 66px; color: #fff; padding-left: 20px; line-height: 50px;}
+.goodsindex .goodsbase .price .pv{ margin-top: -50px; padding-left: 94px; }
+.goodsindex .goodsbase .price .now{ color: #fff; font-size: 34px; line-height:50px; font-weight: bold;}
+.goodsindex .goodsbase .price .shi{ color: #ffc5c5; font-weight: bold; font-size: 14px; text-decoration: line-through;}
+.goodsindex .goodsbase .priceshadow{ height: 4px; background: #dedede; line-height: 0; font-size: 0; position: relative;}
+.goodsindex .goodsbase .priceshadow em{ position: absolute; right: -4px; top: 0; font-size: 0; line-height: 0;
+	border-color: #999 transparent transparent #999; border-style: solid; border-width: 2px;
+}
+/*其他信息*/
+.goodsindex .goodsbase .other{ border-bottom: 1px dotted #c9c9c9; padding: 10px 0; margin: 0 20px;}
+.goodsindex .goodsbase .other .line{ float: left; width: 1px; background: #e5dfda; height: 40px;}
+.goodsindex .goodsbase .other .productNumber{ float: left; width: 163px; text-align: center; color: #b77e5e;}
+.goodsindex .goodsbase .other .comment{ float: left; width: 162px; text-align: center; color: #38b;}
+.goodsindex .goodsbase .other .productModel{ float: left; width: 163px; text-align: center; color: #280;}
+.goodsindex .goodsbase .other strong{ display: block; font-size: 18px; line-height: 24px;}
+.goodsindex .goodsbase .other span{ display: block; color: #999;}
+/*销售属性*/
+.goodsindex .goodsbase .buymod{ margin: 0 20px;}
+.goodsindex .goodsbase .buymod .saleprop{ border-bottom: 1px dotted #c9c9c9; padding: 8px 0;}
+.goodsindex .goodsbase .buymod .saleprop .pn{ width: 66px; color: #999; line-height: 44px; min-height: 44px;}
+.goodsindex .goodsbase .buymod .saleprop .pv{ padding:2px 0 2px 73px; margin-top: -44px; line-height: 40px; min-height: 40px;}
+.goodsindex .goodsbase .buymod .saleprop .pv a{ float: left; border: 1px solid #b8b7bd; background: #fff; padding: 1px; margin:0 6px 0 1px;}
+/*配送至*/
+.goodsindex .goodsbase .buymod .saleprop .pv.area .gang{ float: left; margin: 8px 0; position:relative; z-index:14; padding:0 24px 0 10px; 
+	max-width: 440px; height: 22px; line-height: 22px; overflow: hidden; background: #fff; border: 1px solid #d5d5d5; cursor: pointer; white-space:nowrap;
+}
+.goodsindex .goodsbase .buymod .saleprop .pv.area .gang:hover{ border-color: #aaa; color: #F22E00;}
+.goodsindex .goodsbase .buymod .saleprop .pv.area .gang em{ position: absolute; right: 8px; top: 10px; line-height: 0; font-size: 0; overflow: hidden;
+	border-width: 4px; border-style: solid; border-color: #999 transparent transparent transparent ;
+}
+.goodsindex .goodsbase .buymod .saleprop .pv.area strong{ float: left; color: #f22e00; margin: 0 8px;}
+.goodsindex .goodsbase .buymod .saleprop .pv.area span{ float: left;}
+/*颜色*/
+.goodsindex .goodsbase .buymod .saleprop .pv.color a{ margin: 3px 6px 3px 1px; }
+.goodsindex .goodsbase .buymod .saleprop .pv.color a:hover{ margin: 2px 5px 2px 0; border: 2px solid #707070; }
+.goodsindex .goodsbase .buymod .saleprop .pv.color a.chose{ margin: 2px 5px 2px 0; border: 2px solid #be0106; }
+.goodsindex .goodsbase .buymod .saleprop .pv.color a img{ float: left;}
+/*尺寸*/
+.goodsindex .goodsbase .buymod .saleprop .pv.size a{ margin: 7px 6px 7px 1px; line-height: 22px;}
+.goodsindex .goodsbase .buymod .saleprop .pv.size a:hover{ margin: 6px 5px 6px 0px; border: 2px solid #707070; }
+.goodsindex .goodsbase .buymod .saleprop .pv.size a.chose{ margin: 6px 5px 6px 0px; border: 2px solid #be0106; }
+.goodsindex .goodsbase .buymod .saleprop .pv.size a strong{ float: left; font-weight: normal; color: #404040; padding: 0 6px;}
+/*数量*/
+.goodsindex .goodsbase .buymod .saleprop .pv.buynumb .mod_ib{ float: left; margin: 5px 0 5px 1px; line-height: 30; height: 30px;}
+.goodsindex .goodsbase .buymod .saleprop .pv.buynumb span{ float: left; margin: 0 0 0 26px; color: #999;}
+.goodsindex .goodsbase .buymod .saleprop .pv.buynumb i{ position: absolute; right: -20px; font-weight: bold; border: 1px solid #d5d5d5; 
+	height: 12px; line-height: 10px; width: 16px; text-align: center; font-style: normal; color: #666; cursor: pointer;
+	-moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; -khtml-user-select:none; user-select:none;
+}
+.goodsindex .goodsbase .buymod .saleprop .pv.buynumb i:hover{ border-color: #999; color: #333;}
+.goodsindex .goodsbase .buymod .saleprop .pv.buynumb i.no{ border-color: #d5d5d5; color: #ccc;}
+.goodsindex .goodsbase .buymod .saleprop .pv.buynumb i.up{ top: 0; }
+.goodsindex .goodsbase .buymod .saleprop .pv.buynumb i.down{ bottom: 0; padding-top: 2px; height: 10px;}
+/*已选择*/
+.goodsindex .goodsbase .buymod .saleprop .pv.haschose{ color: #f22e00;}
+.goodsindex .goodsbase .buymod .saleprop .pv.haschose span{ padding: 0 3px;}
+.goodsindex .goodsbase .buymod .saleprop .pv.haschose strong{ padding: 0 3px;}
+/*购买按钮*/
+.goodsindex .goodsbase .buymod .tobuy{ padding: 30px 0 42px 74px;}
+.goodsindex .goodsbase .buymod .tobuy button{ width: 167px; height: 33px; border: none; border-radius: 0; box-shadow: none; margin-right: 10px; text-indent: -999em;}
+.goodsindex .goodsbase .buymod .tobuy button.nowtobuy{ background: url(../img/tobuy.png) 0 0 no-repeat;}
+.goodsindex .goodsbase .buymod .tobuy button.addtocart{ background: url(../img/tobuy.png) -167px 0 no-repeat;}
+.goodsindex .goodsbase .buymod .tobuy button.shopping{ background: url(../img/tobuy.png) -334px 0 no-repeat;}
+.goodsindex .goodsbase .buymod .tobuy button.reserve{ background: url(../img/tobuy.png) -501px 0 no-repeat;}
+.goodsindex .goodsbase .buymod .tobuy button.order{ background: url(../img/tobuy.png) -668px 0 no-repeat;}
+/*服务承诺*/
+.goodsindex .goodsbase .sevese{padding-bottom: 20px; line-height: 24px;}
+.goodsindex .goodsbase .sevese .pn{ width: 66px; padding-left: 20px; color: #999;}
+.goodsindex .goodsbase .sevese .pv{ padding-left: 94px; margin-top: -24px;}
+.goodsindex .goodsbase .sevese .pv span{ float: left; margin-right: 20px; color: #666;}
+.goodsindex .goodsbase .sevese .pv a{ float: left; color: #F22E00; margin-right: 6px;}
+.goodsindex .goodsbase .sevese .pv a:hover{ text-decoration: underline;}
+/*商品图片展示*/
+.goodsindex .goodsbase .bandpic{ margin-left: -100%; float: left; width: 460px; background: #fff;}
+.goodsindex .goodsbase .bandpic .band{ margin: 0 33px; text-align: center; background: url(../img/xu.png) repeat-x 50% 50%;}
+.goodsindex .goodsbase .bandpic .band .bandname{ display: inline-block; background-color: #fff; padding: 0 18px; font-weight: 700; line-height: 90px; font-size: 14px;}
+.goodsindex .goodsbase .bandpic .showpic .midpic{ padding: 0 10px;}
+.goodsindex .goodsbase .bandpic .showpic .midpic img{ height: 440px; width: 440px;}
+.goodsindex .goodsbase .bandpic .showpic .lowpic{ text-align: center;}
+.goodsindex .goodsbase .bandpic .showpic .lowpic .thumbgroup{ display: inline-block; vertical-align: top;}
+.goodsindex .goodsbase .bandpic .showpic .lowpic .thumbgroup .thumb{ float: left; margin: 22px 10px 0 10px; padding: 2px; height: 55px; width: 55px; box-shadow: 0 0 3px rgba(0,0,0,.1); position: relative;}
+.goodsindex .goodsbase .bandpic .showpic .lowpic .thumbgroup .thumb.chose{ padding: 0; height: 59px; width: 59px;}
+.goodsindex .goodsbase .bandpic .showpic .lowpic .thumbgroup .thumb.chose:after { content: '\20'; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+	box-shadow: inset 0 0 10px rgba(0,0,0,.5);
+}
+.goodsindex .goodsbase .bandpic .showpic .lowpic .thumbgroup .thumb.chose i{ width: 10px; height: 6px; background: url(../img/thumb.png) no-repeat 0 0;
+	position: absolute; left: 50%; top: -14px; margin-left: -5px; 
+}
+.goodsindex .goodsbase .bandpic .showpic .lowpic .thumbgroup .thumb img{ width: 100%; height: 100%;}
+.goodsindex .goodsbase .bandpic .showpic .bigpic{ display: none;}
+/*分享和收藏*/
+.goodsindex .goodsbase .bandpic .sharelove{ padding: 38px 40px 25px; color: #999;}
+.goodsindex .goodsbase .bandpic .share{ float: left; line-height: 16px;}
+.goodsindex .goodsbase .bandpic .share i{ float: left; margin-right: 5px; width: 11px; height: 15px; background: url(../img/sharelove.png) 0 0 no-repeat;}
+.goodsindex .goodsbase .bandpic .share span{ float: left;}
+.goodsindex .goodsbase .bandpic .love{ float: left; line-height: 16px; margin-left: 30px;}
+.goodsindex .goodsbase .bandpic .love i{ float: left; margin-right: 5px; width: 16px; height: 15px; background: url(../img/sharelove.png) -11px 0 no-repeat;}
+.goodsindex .goodsbase .bandpic .love span{ float: left;}
+.goodsindex .goodsbase .bandpic .love strong{ float: left; font-weight: normal; margin-left: 6px;}
+
+/*商家信息*/
+.goodsindex .storeinfo{ width: 210px; height: 100%; position: absolute; top: 0; right: 0; overflow: hidden; background-color: #eee; box-shadow: 2px 0 2px #ccc; }

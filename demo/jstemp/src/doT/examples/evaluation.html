@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>doT</title>
+	<script type="text/javascript" src="../src/js/doT.min.js"></script>
+</head>
+<body>
+	<h2>拥有键/值对的数据（纯粹的对象）迭代</h2>
+	<p>当需要替换的数据是对象时应该总是使用如下写法，使用 for、while等 进行迭代时，无法获取对象的键</p>
+	<p>需要获取值时用"[]"获取，不能用".",键不能包裹于引号中</p>
+	<div class="demo"></div>
+	<script type="text/html" id="temp">
+		{{ for(var prop in it) { }}
+		<div>{{=prop}}: {{=it[prop]}}</div>
+		{{ } }}
+	</script>
+	<script>
+		//{{ for(var prop in it) { }}  prop为键，it为需要迭代的对象
+		//{{=it[prop]}} 需要获取值时用"[]"获取，不能用".",键不能包裹于引号中
+
+		var data = {'name':'Jake','age':31,'mother':'Kate','father':'John','interests':['basketball','hockey','photography'],'contact':{'email':'jake@xyz.com','phone':'999999999'}};
+		var temp = document.getElementById('temp').innerHTML;
+		var tempFn = doT.template(temp);
+		var resultHtml = tempFn(data);
+		document.getElementsByClassName('demo')[0].innerHTML = resultHtml;
+	</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿@charset "utf-8";
+/* ============================== 重置 ============================== */
+html { height: 100%; font-size: 12px; line-height: 20px; font-family: Arial, Simsun, sans-serif; background: #fff; color: #666;}
+body { height: 100%; position: relative; margin: 0;}
+a{ text-decoration: none;}
+/* ============================== 库 ============================== */
+.ku_fix { zoom: 1;}
+.ku_fix:after { display: block; content: ""; height: 0; clear: both; overflow: hidden; visibility: hidden;}
+.ku_pos_r{ position:relative; }
+/* ============================== 框架 ============================== */
+.site_w{width: 1200px; margin: auto;}
+/* ============================== 当前 ============================== */

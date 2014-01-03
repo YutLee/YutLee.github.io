@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title></title>
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+	<div class="fill">
+		<h4>正常</h4>
+		<div class="pn">名称：</div>
+		<div class="pv">
+			<div class="mod_ib">
+				<input type="text" />
+			</div>
+		</div>
+		<h4>日期</h4>
+		<div class="pn">日期：</div>
+		<div class="pv date">
+			<div class="mod_ib" style="width: 150px;">
+				<input type="text" />
+				<i></i>
+			</div>
+		</div>
+		<h4>价格</h4>
+		<div class="pn">价格：</div>
+		<div class="pv price">
+			<div class="mod_ib" style="width: 138px;">
+				<input type="text" />
+				<i>&yen;</i>
+			</div>
+		</div>
+		<h4>必填</h4>
+		<div class="pn">手机号：</div>
+		<div class="pv">
+			<font class="bi">*</font>
+			<div class="mod_ib">
+				<input type="text" />
+			</div>
+		</div>
+		<h4>下拉列表</h4>
+		<div class="pn">分类：</div>
+		<div class="pv">
+			<select name="">
+				<option value="">请选择</option>
+			</select>
+		</div>
+		<h4>单选复选</h4>
+		<div class="pn">分类：</div>
+		<div class="pv">
+			<label><input type="radio" name="is_show" value="0"> 不显示</label>
+			&emsp;
+			<label><input type="radio" name="is_show" value="1" checked=""> 显示</label>
+		</div>
+		<h4>文件上传</h4>
+		<div class="pn">分类：</div>
+		<div class="pv">
+            <input type="file" name="comp_logo" id="comp_logo" onchange="valid_ext(this);" />
+		</div>
+		<h4>提示</h4>
+		<div class="pn">排序权重：</div>
+		<div class="pv tipNormal">
+			<div class="mod_ib">
+				<input type="text" />
+			</div>
+        	<div class="tip">初始化的排序权重（最小单位：1）由管理人员手动设定，默认为0</div>
+		</div>
+		<div class="pn">排序权重：</div>
+		<div class="pv tipWarn">
+			<div class="mod_ib">
+				<input type="text" value="测试" />
+			</div>
+        	<div class="tip">输入的字符不符合规则</div>
+		</div>
+		<h4>一行显示</h4>
+		<div class="pn">货位编号：</div>
+		<div class="pv ku_fix oneline">
+			<div class="mod_ib" style="width: 150px;">
+				<input type="text" />
+			</div>
+			<span>&emsp;货位编号能反应一定的位置关系</span>
+		</div>
+		<div class="pn">坐标：</div>
+		<div class="pv ku_fix oneline">
+			<span>X轴&ensp;</span>
+			<div class="mod_ib" style="width: 150px;">
+				<input type="text" />
+			</div>
+			<span>&emsp;Y轴&ensp;</span>
+			<div class="mod_ib" style="width: 150px;">
+				<input type="text" />
+			</div>
+			<span>&emsp;</span>
+			<button type="button">设置</button>
+		</div>
+		<div class="pn">尺寸：</div>
+		<div class="pv ku_fix oneline">
+			<span>长&ensp;</span>
+			<div class="mod_ib" style="width: 60px;">
+				<input type="text" />
+			</div>
+			<span>&ensp;cm</span>
+			<span>&emsp;×&emsp;</span>
+			<span>宽&ensp;</span>
+			<div class="mod_ib" style="width: 60px;">
+				<input type="text" />
+			</div>
+			<span>&ensp;cm</span>
+			<span>&emsp;×&emsp;</span>
+			<span>高&ensp;</span>
+			<div class="mod_ib" style="width: 60px;">
+				<input type="text" />
+			</div>
+			<span>&ensp;cm</span>
+		</div>
+		<h4>输入框</h4>
+		<div class="pn">描述：</div>
+		<div class="pv">
+			<div class="mod_ib">
+				<textarea name="" id=""></textarea>
+			</div>
+		</div>
+		<h4>编辑框</h4>
+		<div class="pn">品牌故事：</div>
+		<div class="pv">
+			<div class="mod_tx">
+				<textarea name="" id=""></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="sub ku_fix">
+		<button type="submit" class="style">保存</button>
+    	<button type="button">取消</button>
+	</div>
+</body>
+</html>
+

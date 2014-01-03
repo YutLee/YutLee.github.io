@@ -1,0 +1,71 @@
+﻿@charset "utf-8";
+/* ============================== 重置 ============================== */
+html {
+	height: 100%;
+	font-size: 12px;
+	line-height: 20px;
+	font-family: Arial, Simsun, sans-serif;
+	background: #fff;
+	color: #666;
+	overflow-y: scroll;
+}
+body {
+	height: 100%;
+	position: relative;
+	margin: 0;
+}
+img{ vertical-align: top; border: none;}
+/* ============================== 库 ============================== */
+.ku_fix {
+	zoom: 1;
+}
+.ku_fix:after {
+	display: block;
+	content: "";
+	height: 0;
+	clear: both;
+	overflow: hidden;
+	visibility: hidden;
+}
+/* ============================== 基本模块 ============================== */
+/* 按钮 */
+button { position: relative; background-color: #fff; margin: 0; padding: 0; /* outline:none; */ font-weight: bold; color: #333; 
+         cursor: pointer; vertical-align: top; overflow: visible; height: 30px; line-height: 32px\0; *line-height:28px; width: auto;
+         width: 72px; box-shadow: 0 1px 0 rgba(0,0,0,.05); border: 1px solid #d9d9d9; border-radius: 2px;
+       }
+button:hover { border-color: #b8b8b8; }
+button:active { background-color: #e5e5e5; box-shadow: inset 0 1px 1px rgba(0,0,0,.1);}
+button[disabled] { opacity: .5; cursor: default;}
+button[disabled]:hover { border-color: #d9d9d9;}
+button[disabled]:active { background-color: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.05);}
+/* 风格 */
+button.style { background-color: #b3c833; color: #fff; border: none;}
+button.style:hover { background-color: #c1d739; box-shadow: inset 0 -2px 0 rgba(0,0,0,.2);}
+button.style:active { background-color: #96aa39; box-shadow: inset 0 2px 0 rgba(0,0,0,.2);}
+button[disabled].style:hover { background-color: #b3c833; box-shadow: none;}
+button[disabled].style:active { background-color: #b3c833; box-shadow: none;}
+/* ============================== 框架 ============================== */
+.site_w{width: 1200px; margin: auto;}
+/* ============================== 当前 ============================== */
+.lists{ margin-left: -85px;}
+.lists .list{ float: left; width: 236px; height: 374px; margin: 0 0 20px 85px; position: relative;}
+.lists .list .goods{ padding: 15px; width: 200px; background: #fff; border: 3px solid #fff; line-height: 20px;
+	-webkit-transition: border-color 0.3s linear;
+	-moz-transition: border-color 0.3s linear;
+	-o-transition: border-color 0.3s linear;
+	transition: border-color 0.3s linear;
+}
+.lists .list:hover .goods{ position: absolute; z-index: 1; left: 0; top: 0; right: 0; border-color: #f0f0f0;}
+.lists .list .goods .pic{display: block; text-align: center;}
+.lists .list:hover .goods .pic{ opacity: .8;}
+.lists .list .goods .pic img{ width: 200px; height: 200px;}
+.lists .list .goods .salesay{ color: #F22E00; height: 20px; min-height: 20px; overflow: hidden; padding: 4px 0;}
+.lists .list:hover .goods .salesay{ height: auto;}
+.lists .list .goods .name{ display: block; color: #000; text-decoration: none; height: 40px; min-height: 40px; overflow: hidden; }
+.lists .list:hover .goods .name{ height: auto;}
+.lists .list .goods .price{ padding: 10px 0;}
+.lists .list .goods .price .now{float: left; color: #d70000; font-family: 'Verdana'; font-size: 14px; font-weight: bold;}
+.lists .list .goods .price .shi{float: left; color: #999; font-family: 'Verdana'; text-decoration: line-through; padding: 0 0 0 10px; }
+.lists .list .goods .buyarea{}
+.lists .list .goods .buyarea  button{ float: left; width: 102px;}
+.lists .list .goods .buyarea .hasbuy{ float: left; margin-left: 10px; line-height: 30px; color: #999;}

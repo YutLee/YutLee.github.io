@@ -1,0 +1,129 @@
+﻿@charset "utf-8";
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Thin'), local('Roboto-Thin'), url(//ssl.gstatic.com/fonts/roboto/v9/vzIUHo9z-oJ4WgkpPOtg1_esZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url(//ssl.gstatic.com/fonts/roboto/v9/Hgo13k-tfSpn0qi1SFdUfT8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//ssl.gstatic.com/fonts/roboto/v9/2UX7WLTfW3W8TclTUvlFyQ.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//ssl.gstatic.com/fonts/roboto/v9/RxZJdnzeo3R5zSexge8UUT8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(//ssl.gstatic.com/fonts/roboto/v9/d-6IYplOFocCacKzxwXSOD8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 100;
+  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(//ssl.gstatic.com/fonts/roboto/v9/12mE4jfMSBTmg-81EiS-YRsxEYwM7FgeyaSgU71cLG0.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(//ssl.gstatic.com/fonts/roboto/v9/7m8l7TlFO-S3VkhHuR0at4bN6UDyHWBl620a-IRfuBk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Slab Thin'), local('RobotoSlab-Thin'), url(//ssl.gstatic.com/fonts/robotoslab/v2/MEz38VLIFL-t46JUtkIEgCeJLMOzE6CCkidNEpZOseY.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Slab Light'), local('RobotoSlab-Light'), url(//ssl.gstatic.com/fonts/robotoslab/v2/dazS1PrQQuCxC3iOAJFEJR_xHqYgAV9Bl_ZQbYUxnQU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(//ssl.gstatic.com/fonts/robotoslab/v2/dazS1PrQQuCxC3iOAJFEJTqR_3kx9_hJXbbyU8S6IN0.woff) format('woff');
+}
+/* ============================== 重置 ============================== */
+html { height: 100%; font-size: 12px; line-height: 20px; font-family: Arial, Simsun, sans-serif; background: #e5e5e5; color: #666;}
+body { height: 100%; position: relative; margin: 0;}
+a{ text-decoration: none;}
+/* ============================== 库 ============================== */
+.ku_fix { zoom: 1;}
+.ku_fix:after { display: block; content: ""; height: 0; clear: both; overflow: hidden; visibility: hidden;}
+.ku_pos_r{ position:relative; }
+/* ============================== 框架 ============================== */
+.site_w{width: 1200px; margin: auto;}
+/* 
+============================================================================================================================================
+ * 基本模块：      大多数网站都可以用的模块，针对不用的网站有微调，通常指：按钮、选择、输入框、分页、弹出框、出错提示、操作确认/取消框
+============================================================================================================================================
+*/
+/*输入*/
+.mod_ib { position: relative; padding: 0 18px 0 0;}
+.mod_ib input { zoom: 1; height: 16px; line-height: 16px; vertical-align: top; outline: 0; width: 100%; padding: 6px 8px; 
+                border: 1px solid #d5d5d5; background: #fff; box-shadow: inset 0 1px 0 rgba(0,0,0,.05);
+              }
+.mod_ib input:hover { border-color: #aaaaaa;}
+.mod_ib input:focus { border-color: #aaaaaa; box-shadow: inset 1px 1px 0 rgba(0,0,0,.1);}
+/* 按钮 */
+button { position: relative; background-color: #fff; margin: 0; padding: 0; /* outline:none; */ font-weight: bold; color: #333; 
+         cursor: pointer; vertical-align: top; overflow: visible; height: 30px; line-height: 32px\0; *line-height:28px; width: auto;
+         width: 72px; box-shadow: 0 1px 0 rgba(0,0,0,.05); border: 1px solid #d9d9d9; border-radius: 2px;
+       }
+button:hover { border-color: #b8b8b8; }
+button:active { background-color: #e5e5e5; box-shadow: inset 0 1px 1px rgba(0,0,0,.1);}
+button[disabled] { opacity: .5; cursor: default;}
+button[disabled]:hover { border-color: #d9d9d9;}
+button[disabled]:active { background-color: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.05);}
+/* 风格 */
+button.style { background-color: #b3c833; color: #fff; border: none;}
+button.style:hover { background-color: #c1d739; box-shadow: inset 0 -2px 0 rgba(0,0,0,.2);}
+button.style:active { background-color: #96aa39; box-shadow: inset 0 2px 0 rgba(0,0,0,.2);}
+button[disabled].style:hover { background-color: #b3c833; box-shadow: none;}
+button[disabled].style:active { background-color: #b3c833; box-shadow: none;}
+/* ============================== 头部 ============================== */
+.page_h .top{ height: 50px; background: rgba(0,0,0,.8); box-shadow: 0 1px 2px rgba(0,0,0,.4);}
+.page_h .logo{ float: left; font-size: 40px; line-height: 50px; color: #f09609; font-family: 'Roboto'; font-weight: 300; 
+			   font-style: italic; width: 140px; text-align: center;
+			 }
+/*导航*/
+.page_h .nav{float: left;}
+.page_h .nav a{ float: left; line-height: 50px; padding: 0 30px; color: #999; font-size: 14px;
+	-webkit-transition: background-color 0.3s linear;
+	-moz-transition: background-color 0.3s linear;
+	-o-transition: background-color 0.3s linear;
+	transition: background-color 0.3s linear;
+}
+.page_h .nav a:hover{ background: #404040; color: #fff;}
+.page_h .nav a.chose{ background: #f09609; color: #fff;}
+/*搜索*/
+.page_h .search{ float: left; position: relative; padding: 10px 0 10px 10px;}
+.page_h .search .mod_ib{ width: 300px;}
+.page_h .search input{ border: none; background: rgba(255,255,255,.1); color: #fff; padding: 7px 8px;}
+.page_h .search .tosearch{ position: absolute; right: -50px; top: 0; width: 50px; height: 50px; line-height: 50px; text-align: center;}
+.page_h .search .tosearch i{ position: absolute; top: 15px; left: 15px; height: 20px; width: 20px;
+							 background: url(../img/search.png) no-repeat 0 0;
+						   }
+.page_h .search .tosearch:hover i{ -ms-background-position-y: -20px; background-position-y: -20px;}
+/* ============================== 当前 ============================== */
+.index{ padding: 20px 0 0 0; margin-left: -85px;}
+.index a{ float: left; margin: 0 0 20px 85px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.1); padding: 20px 0; width: 236px; 
+	text-align: center; font-size: 14px; color: #666;
+}
+.index a:hover{ background: #f5f5f5; color: #d44c34;}

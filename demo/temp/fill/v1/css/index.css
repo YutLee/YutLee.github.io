@@ -1,0 +1,76 @@
+﻿@charset "utf-8";
+/* ============================== 重置 ============================== */
+html { height: 100%; font-size: 12px; line-height: 20px; font-family: Arial, Simsun, sans-serif; background: #fff; color: #666;}
+body { height: 100%; position: relative; margin: 0;}
+a{ text-decoration: none;}
+/* ============================== 库 ============================== */
+.ku_fix { zoom: 1;}
+.ku_fix:after { display: block; content: ""; height: 0; clear: both; overflow: hidden; visibility: hidden;}
+.ku_pos_r{ position:relative; }
+/* ============================== 基本模块 ============================== */
+/* 单选复选 */
+label {	line-height: 14px; display: inline-block; vertical-align: top; padding: 8px 0;
+		-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; -khtml-user-select: none;	user-select: none;
+	  }
+label input { margin: 0; vertical-align: top; vertical-align: middle\0;}
+/*输入*/
+.mod_ib { position: relative; padding: 0 18px 0 0;}
+.mod_ib input { zoom: 1; height: 16px; line-height: 16px; vertical-align: top; outline: 0; width: 100%; padding: 6px 8px; 
+                border: 1px solid #d5d5d5; background: #fff; box-shadow: inset 0 1px 0 rgba(0,0,0,.05);
+              }
+.mod_ib input:hover { border-color: #aaaaaa;}
+.mod_ib input:focus { border-color: #aaaaaa; box-shadow: inset 1px 1px 0 rgba(0,0,0,.1);}
+/*输入框*/
+textarea { margin: 0; white-space: pre-wrap; text-align: justify; overflow-y: auto; resize: none; line-height: 16px; vertical-align: top;}
+.mod_ib textarea { width: 100%; height: 80px; padding: 6px 8px; border: 1px solid #d5d5d5; background: #fff; box-shadow: inset 0 1px 0 rgba(0,0,0,.05); }
+.mod_ib textarea:hover { border-color: #aaaaaa;}
+.mod_ib textarea:focus { border-color: #aaaaaa; box-shadow: inset 1px 1px 0 rgba(0,0,0,.1); }
+/* 编辑框 */
+.mod_tx { position: relative; padding: 0 8px 8px 0; width: 800px; height: 500px; }
+.mod_tx textarea { width: 100%; height: 100%;}
+/* 按钮 */
+button { position: relative; background-color: #fff; margin: 0; padding: 0; /* outline:none; */ font-weight: bold; color: #333; 
+         cursor: pointer; vertical-align: top; overflow: visible; height: 30px; line-height: 32px\0; *line-height:28px; width: auto;
+         width: 72px; box-shadow: 0 1px 0 rgba(0,0,0,.05); border: 1px solid #d9d9d9; border-radius: 2px;
+       }
+button:hover { border-color: #b8b8b8; }
+button:active { background-color: #e5e5e5; box-shadow: inset 0 1px 1px rgba(0,0,0,.1);}
+button[disabled] { opacity: .5; cursor: default;}
+button[disabled]:hover { border-color: #d9d9d9;}
+button[disabled]:active { background-color: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.05);}
+/* 风格 */
+button.style { background-color: #b3c833; color: #fff; border: none;}
+button.style:hover { background-color: #c1d739; box-shadow: inset 0 -2px 0 rgba(0,0,0,.2);}
+button.style:active { background-color: #96aa39; box-shadow: inset 0 2px 0 rgba(0,0,0,.2);}
+button[disabled].style:hover { background-color: #b3c833; box-shadow: none;}
+button[disabled].style:active { background-color: #b3c833; box-shadow: none;}
+/* ============================== 框架 ============================== */
+.site_w{width: 1200px; margin: auto;}
+/* ============================== 当前 ============================== */
+.fill{ padding: 0 65px 0 0;}
+.fill h4{ font-size: 14px; margin: 0; padding: 30px 0 0 150px;}
+.fill .pn { width: 130px; text-align: right; font-weight: bold; height: 30px; line-height: 30px; color: #000; padding: 10px 0;}
+.fill .pv { min-height: 30px; line-height: 30px; margin-top: -50px; padding: 10px 0 10px 150px; position: relative;}
+/* 必填 */
+.fill .pv .bi { color: #f22e00; font-family: Simsun; width: 20px; height: 30px; text-align: center; position: absolute; left: 130px; top: 10px;}
+/* 日期 */
+.fill .pv.date i { position: absolute; right: 7px; top: 7px; width: 16px; height: 16px; background: url(../img/date.png) no-repeat 0 0;}
+/* 货币 */
+.fill .pv.price .mod_ib { padding: 0 30px 0 0; }
+.fill .pv.price .mod_ib input{ padding: 6px 8px 6px 20px; }
+.fill .pv.price i { position: absolute; left: 8px; top: 0; font-style: normal; }
+/* 下拉列表 */
+.fill .pv select { float: left; margin: 5px 0 0 0; }
+/*文件上传*/
+.fill .pv input[type=file] { float: left; margin: 5px 0 0 0; }
+/* 提示 */
+.fill .pv.tipNormal .tip { color: #999;}
+.fill .pv.tipWarn .mod_ib input { background-color: #ffd1aa; border-color: #f86c17; }
+.fill .pv.tipWarn .tip { color: #f22e00; }
+/*一行显示*/
+.fill .pv.oneline  span{ float: left; color: #999;}
+.fill .pv.oneline  button{ float: left;}
+.fill .pv.oneline .mod_ib{ float: left;}
+/* ============================== 提交 ============================== */
+.sub { padding: 10px 0 10px 150px; }
+.sub button { float: left; margin-right: 8px;}

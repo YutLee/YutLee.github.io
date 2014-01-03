@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>doT</title>
+	<script type="text/javascript" src="../src/js/doT.min.js"></script>
+</head>
+<body>
+	<h2>条件语句</h2>
+	<p>两个“?”后面如果带有条件则是 else if，如果什么都没有就是 else</p>
+	<div class="demo"></div>
+	<script type="text/html" id="temp">
+		{{? it.name }}	
+		<div>Oh, I love your name, {{=it.name}}!</div>
+		{{?? it.age === 0}}
+		<div>Guess nobody named you yet!</div>
+		{{??}}
+		You are {{=it.age}} and still don't have a name?
+		{{?}}
+	</script>
+	<script>
+		//上面模板依次等同于
+		//{{? it.name }}       等同于 {{if (it.name) { }}
+		//{{?? it.age === 0}}  等同于 {{ }else if( it.age === 0 )}}
+		//{{??}}               等同于 {{ }else{ }}
+		//{{?}}                等同于 {{ } }}
+
+		var data = {'name':'Jake','age':31};
+		var temp = document.getElementById('temp').innerHTML;
+		var tempFn = doT.template(temp);
+		var resultHtml = tempFn(data);
+		document.getElementsByClassName('demo')[0].innerHTML = resultHtml;
+	</script>
+</body>
+</html>

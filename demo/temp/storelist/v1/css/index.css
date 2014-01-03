@@ -1,0 +1,62 @@
+﻿@charset "utf-8";
+/* ============================== 重置 ============================== */
+html { height: 100%; font-size: 12px; line-height: 20px; font-family: Arial, Simsun, sans-serif; background: #fff; color: #666; overflow-y: scroll;}
+body { height: 100%; position: relative; margin: 0;}
+img{ vertical-align: top; border: none;}
+/* ============================== 库 ============================== */
+.ku_fix { zoom: 1; }
+.ku_fix:after { display: block; content: ""; height: 0; clear: both; overflow: hidden; visibility: hidden;}
+/* ============================== 基本模块 ============================== */
+/* 按钮 */
+button { position: relative; background-color: #fff; margin: 0; padding: 0; /* outline:none; */ font-weight: bold; color: #333; 
+         cursor: pointer; vertical-align: top; overflow: visible; height: 30px; line-height: 32px\0; *line-height:28px; width: auto;
+         width: 72px; box-shadow: 0 1px 0 rgba(0,0,0,.05); border: 1px solid #d9d9d9; border-radius: 2px;
+       }
+button:hover { border-color: #b8b8b8; }
+button:active { background-color: #e5e5e5; box-shadow: inset 0 1px 1px rgba(0,0,0,.1);}
+button[disabled] { opacity: .5; cursor: default;}
+button[disabled]:hover { border-color: #d9d9d9;}
+button[disabled]:active { background-color: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.05);}
+/* 风格 */
+button.style { background-color: #b3c833; color: #fff; border: none;}
+button.style:hover { background-color: #c1d739; box-shadow: inset 0 -2px 0 rgba(0,0,0,.2);}
+button.style:active { background-color: #96aa39; box-shadow: inset 0 2px 0 rgba(0,0,0,.2);}
+button[disabled].style:hover { background-color: #b3c833; box-shadow: none;}
+button[disabled].style:active { background-color: #b3c833; box-shadow: none;}
+/* ============================== 框架 ============================== */
+.site_w{width: 1200px; margin: auto;}
+/* ============================== 当前 ============================== */
+.list{ position: relative; border-bottom: 1px solid #e5e5e5; padding: 20px 0; min-height: 160px;}
+.list .storemod{ width: 700px;}
+/*店铺信息*/
+.list .storemod .infowarp{ float: left; width: 100%;}
+.list .storemod .info{ padding-left: 220px;}
+.list .storemod .info .title{ display: block; font-size: 16px; font-weight: bold; color: #1c7ad9; text-decoration: none;}
+.list .storemod .info .title:hover{ color: #f22e00;}
+.list .storemod .info .power{ padding: 7px 0 10px 0; cursor: default;}
+.list .storemod .info .power .isGoldShop{ float: left; height: 18px; line-height: 18px; padding: 1px 0; margin: 0 4px 0 0;}
+.list .storemod .info .power .isGoldShop img{ width: 18px; height: 18px;}
+.list .storemod .info .power .service{ float: left; margin-left: -2px;}
+.list .storemod .info .power .service span{ float: left; color: #fff; border-radius: 1px;  padding: 0 4px; margin: 0 2px;}
+.list .storemod .info .power .service span.isWifi{background: #c64084;}
+.list .storemod .info .power .service span.toPartner{background: #3a8fef;}
+.list .storemod .info .power .service span.upPartner{background: #64be62;}
+.list .storemod .info .power .service span.noPartner{background: #f40;}
+.list .storemod .info .line{ height: 0px; font-size: 0; line-height: 0; overflow: hidden; border-bottom: 1px dotted #e5e5e5;}
+.list .storemod .info .detail{ line-height: 24px; padding: 4px 0 10px 0;}
+.list .storemod .info .detail span{ color: #999; }
+.list .storemod .info .intostore{ display: inline-block; background: #f5f5f5; border: 1px solid #e5e5e5; padding: 2px 20px; 
+	color: #333; text-decoration: none; font-weight: bold;
+}
+.list .storemod .info .intostore:hover{ color: #f22e00; border-color: #d9d9d9;}
+/*店铺图片*/
+.list .storemod .pic{ float: left; margin-left: -100%; width: 200px;}
+.list .storemod .pic img{ width: 200px;}
+/*店铺商品*/
+.list .storegoods{ position: absolute; right: 0; top: 0; height: 100%;}
+.list .storegoods .glists{ padding: 20px 0;}
+.list .storegoods .glist{ float: left; width: 140px; margin-left: 14px; border: 1px solid #e5e5e5; color: #666; text-decoration: none;}
+.list .storegoods .glist:hover{ color: #f22e00;}
+.list .storegoods .glist img{ width: 140px;}
+.list .storegoods .glist span{ display: block; padding: 0 10px; text-align: right;}
+.list .storegoods .glist strong{ float: left;}

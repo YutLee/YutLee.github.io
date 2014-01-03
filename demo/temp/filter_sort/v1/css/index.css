@@ -1,0 +1,84 @@
+﻿@charset "utf-8";
+/* ============================== 重置 ============================== */
+html { height: 100%; font-size: 12px; line-height: 20px; font-family: Arial, Simsun, sans-serif; background: #fff; color: #666; overflow-y: scroll;}
+body { height: 100%; position: relative; margin: 0;}
+img{ vertical-align: top;}
+a{ text-decoration: none;}
+/* ============================== 库 ============================== */
+.ku_fix { zoom: 1; }
+.ku_fix:after { display: block; content: ""; height: 0; clear: both; overflow: hidden; visibility: hidden;}
+/* ============================== 基本模块 ============================== */
+/* 按钮 */
+button { position: relative; background-color: #fff; margin: 0; padding: 0; /* outline:none; */ font-weight: bold; color: #333; 
+         cursor: pointer; vertical-align: top; overflow: visible; height: 30px; line-height: 32px\0; *line-height:28px; width: auto;
+         width: 72px; box-shadow: 0 1px 0 rgba(0,0,0,.05); border: 1px solid #d9d9d9; border-radius: 2px;
+       }
+button:hover { border-color: #b8b8b8; }
+button:active { background-color: #e5e5e5; box-shadow: inset 0 1px 1px rgba(0,0,0,.1);}
+button[disabled] { opacity: .5; cursor: default;}
+button[disabled]:hover { border-color: #d9d9d9;}
+button[disabled]:active { background-color: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.05);}
+/* 风格 */
+button.style { background-color: #b3c833; color: #fff; border: none;}
+button.style:hover { background-color: #c1d739; box-shadow: inset 0 -2px 0 rgba(0,0,0,.2);}
+button.style:active { background-color: #96aa39; box-shadow: inset 0 2px 0 rgba(0,0,0,.2);}
+button[disabled].style:hover { background-color: #b3c833; box-shadow: none;}
+button[disabled].style:active { background-color: #b3c833; box-shadow: none;}
+/* ============================== 框架 ============================== */
+.site_w{width: 1200px; margin: auto;}
+/* ============================== 当前 ============================== */
+.filterSort{}
+/*标题*/
+.filterSort .title{ background: #f5f5f5; padding: 7px 10px; position: relative;}
+.filterSort .title h2{ font-size: 16px; color: #000; margin: 0; padding: 2px 0 0 0; line-height: 20px; width: 70px; text-align: right;}
+.filterSort .title a{ position: absolute; right: 10px; top: 7px; line-height: 22px; color: #666;}
+.filterSort .title a:hover{ color: #F22E00;}
+/*线*/
+.filterSort .filter .line { height: 0; font-size: 0; line-height: 0; overflow: hidden; border-bottom: 1px dotted #ddd; }
+/*筛选*/
+.filterSort .filter .pn { width: 80px; text-align: right; height: 30px; line-height: 30px; color: #999; }
+.filterSort .filter .pv { min-height: 30px; line-height: 30px; margin-top: -30px; padding-left:120px;	position: relative; }
+/*筛选-浮动*/
+.filterSort .filter .pv a{ float: left; color: #666; padding: 0 10px 0 0;}
+.filterSort .filter .pv a span{ float: left; padding: 0 2px; margin: 6px 16px 6px 0; line-height: 18px;}
+.filterSort .filter .pv a:hover span{ background: #f5f5f5; color: #F22E00;}
+.filterSort .filter .pv a.chose span{ background: #FE7000; color: #fff;}
+/*筛选排序栏*/
+.filterSort .sortbar{ background-color: #f5f5f5; border: 1px solid #e5e5e5; padding: 0 10px; position: relative; z-index: 3;}
+/*筛选排序栏-名称*/
+.filterSort .sortbar .ptext{ float: left; line-height: 30px; color: #999;}
+/*筛选排序栏-区域*/
+.filterSort .sortbar .area{ float: left; padding: 0 10px 0 0; border-right: 1px solid #e5e5e5;}
+.filterSort .sortbar .area .gang{ float: left; margin: 3px 0; position:relative; z-index:14; padding:0 24px 0 10px; max-width: 440px; height: 22px; line-height: 22px; 
+	overflow: hidden; background: #fff; border: 1px solid #d5d5d5; cursor: pointer; white-space:nowrap;
+}
+.filterSort .sortbar .area .gang:hover{ border-color: #aaa; color: #F22E00;}
+.filterSort .sortbar .area .gang em{ position: absolute; right: 8px; top: 10px; line-height: 0; font-size: 0; overflow: hidden;
+	border-width: 4px; border-style: solid; border-color: #999 transparent transparent transparent ;
+}
+/*筛选排序栏-一行显示*/
+.filterSort .sortbar .oneline{ float: left; padding: 0 10px; line-height: 18px; border-right: 1px solid #e5e5e5;}
+.filterSort .sortbar .oneline a{ float: left; color: #000; text-align: center; padding: 6px 5px;}
+.filterSort .sortbar .oneline a:hover{ color: #F22E00;}
+.filterSort .sortbar .oneline a span{ display: inline-block; vertical-align: top; position: relative; padding: 0 6px;}
+.filterSort .sortbar .oneline a.chose span{ background: #FE7000; color: #fff; }
+.filterSort .sortbar .oneline a span strong{ float: left; font-weight: normal;}
+.filterSort .sortbar .oneline a span i{ float: left; margin: 7px 0 0 4px; font-size: 0; line-height: 0; overflow: hidden; display: none;
+	border-style: solid; border-color: transparent transparent transparent transparent; border-width: 4px; 
+}
+/*筛选排序栏-一行显示-有正反状态*/
+.filterSort .sortbar .oneline a span i.toUp{ border-top-color: #fff;  }
+.filterSort .sortbar .oneline a span i.toDown{ border-bottom-color: #fff;}
+.filterSort .sortbar .oneline a.chose span i{ display: block;}
+/*右边*/
+.filterSort .sortbar .toright{ position: absolute; right: 0; top: 0; border-left: 1px solid #e5e5e5;}
+/*数量*/
+.filterSort .sortbar .toright .count{ float: left; line-height: 30px; color: #999; padding-left: 10px; }
+.filterSort .sortbar .toright .count span{ float: left;}
+.filterSort .sortbar .toright .count b{ float: left; color: #f22e00; font-family: Verdana; line-height: 28px; padding: 0 2px 2px 2px;}
+/*简单分页*/
+.filterSort .sortbar .toright .simplepage{ float: left; line-height: 30px; margin-left: 6px;}
+.filterSort .sortbar .toright .simplepage em{ float: left; width: 30px; text-align: center; cursor: pointer; font-family: 'Simsun'; font-style: normal; font-weight: bold;}
+.filterSort .sortbar .toright .simplepage em:hover{ color: #f22e00;}
+.filterSort .sortbar .toright .simplepage em.no{ color: #ccc; cursor: default;}
+.filterSort .sortbar .toright .simplepage span{ float: left; font-family: Verdana; line-height: 28px; padding: 0 0 2px 0; }

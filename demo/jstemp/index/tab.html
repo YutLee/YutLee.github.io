@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="shared/styles/sunburst.css">
+	<script src="shared/highlight.pack.js"></script>
+	<script>
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+	<!-- 标题和简介 -->
+	<h1>tab</h1>
+	<p>选项卡：普通的选项卡，就不用多介绍了。</p>
+
+	<!-- 示例及来源 -->
+	<div>
+		<a target="_blank" href="../src/tab/examples">demo</a>
+	</div>
+
+	<!-- 执行说明 -->
+	<div>
+		<h2>执行：</h2>
+		<h3>1、导入css和js</h3>
+		<pre><code class="xml">
+&lt;link rel="stylesheet" href="tab.css"&gt;
+&lt;script type="text/javascript" src="jquery.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="jquery.tab.min.js"&gt;&lt;/script&gt;
+		</code></pre>
+		<h3>2、编写html代码</h3>
+		<pre><code class="xml">
+&lt;ul class="tabs"&gt;
+	&lt;li data-role="tab"&gt;深圳&lt;/li&gt;
+	&lt;li data-role="tab"&gt;北京&lt;/li&gt;
+	&lt;li data-role="tab"&gt;上海&lt;/li&gt;
+	&lt;li data-role="tab"&gt;厦门&lt;/li&gt;
+&lt;/ul&gt;
+&lt;dl class="contents"&gt;
+	&lt;dd data-role="content"&gt;
+		深圳（shenzhen）中华人民共和国副省级城市之一，计划单列市，全国文明城市，国际花园城市，是中国四大一线城市之一，国际重要的空海枢纽和外贸口岸。深圳是中国改革开放以来所设立的第一个经济特区，是中国改革开放的窗口，已发...
+	&lt;/dd&gt;
+	&lt;dd data-role="content"&gt;
+		北京，中华人民共和国首都、直辖市和国家中心城市，中国的政治中心、文化中心，是世界著名古都和现代化国际大都市。中华人民共和国中央人民政府和全国人民代表大会所在地。北京位于华北平原的东北边缘，背靠燕山，有永定河流经老...
+	&lt;/dd&gt;
+	&lt;dd data-role="content"&gt;
+		上海（Shanghai），简称“沪”或“申”，中国第一大城市，中华人民共和国直辖市之一，中国国家中心城市，繁荣的国际大都市。上海地处长江入海口，东向东海，隔海与日本九州岛相望，南濒杭州湾，西与江苏兴化、浙江两省相接，共同...
+	&lt;/dd&gt;
+	&lt;dd data-role="content"&gt;
+		厦门，位于福建东南端，南与漳州接壤，北与泉州相邻，东南与金门岛隔海相望，曾是国共双方距离最短的前线阵地。公元282年置同安县，属晋安郡，1933年设市。既是副省级城市、计划单列市，又是经济特区、国家综合配套改革试验区。...
+	&lt;/dd&gt;
+&lt;/dl&gt;
+		</code></pre>
+		<h3>3、简单的调用tab插件</h3>
+		<pre><code class="html">
+&lt;script type="text/javascript"&gt;
+	$(document).ready(function() {
+		$('.tabs').tab();
+	});
+&lt;/script&gt;
+		</code></pre>
+	</div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+﻿@charset "utf-8";
+/* ============================== 重置 ============================== */
+html {
+	height: 100%;
+	font-size: 12px;
+	line-height: 20px;
+	font-family: Arial, Simsun, sans-serif;
+	background: #fff;
+	color: #666;
+}
+body {
+	height: 100%;
+	position: relative;
+	margin: 0;
+}
+a{ text-decoration: none;}
+/* ============================== 库 ============================== */
+.ku_fix {
+	zoom: 1;
+}
+.ku_fix:after {
+	display: block;
+	content: "";
+	height: 0;
+	clear: both;
+	overflow: hidden;
+	visibility: hidden;
+}
+.ku_pos_r{ position:relative; }
+/* ============================== 框架 ============================== */
+.site_w{width: 1200px; margin: auto;}
+/* ============================== 当前 ============================== */
+.top{ background: #f5f5f5; border-bottom: 1px solid #eee; height: 36px; line-height: 36px; position: relative; z-index: 900; }
+.top .user{ float: left;}
+/*未登录*/
+.top .user .nologin{ float: left; padding: 0 6px; display: none;}
+.top .user .nologin a{ float: left; padding: 0 5px;}
+.top .user .nologin a.log{ color: #F22E00;}
+.top .user .nologin a.log:hover{ text-decoration: underline;}
+.top .user .nologin a.reg{ color: #666;}
+.top .user .nologin a.reg:hover{ color: #F22E00;}
+/*已登录*/
+.top .user .haslogin{ float: left; position: relative; padding: 0 1px; /*display: none;*/}
+.top .user .haslogin:hover{ background: #e5e5e5;}
+.top .user .haslogin .name{ position: relative; z-index: 1; display: block; color: #666; background: #f5f5f5; white-space: nowrap; padding: 0 26px 0 10px;}
+.top .user .haslogin:hover .name{ background: #fff;}
+.top .user .haslogin i{ position: absolute; right: 10px; top: 17px; width: 6px; height: 3px; background: url(../img/down.png) 0 0 no-repeat;}
+.top .user .haslogin span{ display: none; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; font-size: 0; line-height: 0; overflow: hidden; background: #fff;}
+.top .user .haslogin:hover span{ display: block;}
+.top .user .haslogin .hoverOpen{ display: none; position: absolute; left: 0; top: 36px; right: 0; background: #fff; border:1px solid #e5e5e5;}
+.top .user .haslogin:hover .hoverOpen{display: block;}
+.top .user .haslogin .hoverOpen a{display: block; color: #666; white-space: nowrap; padding: 0 10px; line-height: 30px}
+.top .user .haslogin .hoverOpen a:hover{ background: #f5f5f5;}
+/*右侧内容*/
+.topright{ position: absolute; right: 0; top: 0;}
+.topright .group{ float: left; position: relative; padding:0 9px 0 8px;}
+.topright .group>i{ position: absolute; right: 0; top: 12px; height: 12px; width: 1px; background: #dcdcdc; font-size: 0; line-height: 0; overflow: hidden;}
+.topright .group>a{ float: left; color: #666; padding: 0 8px;}
+.topright .group>a:hover{color: #F22E00;}
+/*购物车*/
+.topright .group .cart{ float: left; position: relative; padding: 0 1px;}
+.topright .group .cart:hover{ background: #e5e5e5;}
+.topright .group .cart .zero{ position: relative; z-index: 1; display: block; color: #666; background: #f5f5f5; white-space: nowrap; padding: 0 26px 0 26px;}
+.topright .group .cart:hover .zero{ background: #fff;}
+.topright .group .cart .zero:hover{ color: #f22e00;}
+.topright .group .cart .zero em{ position: absolute; left: 5px; top: 10px; width: 16px; height: 16px; background: url(../img/cart.png) 0 0 no-repeat;}
+.topright .group .cart .zero strong{ color: #f22e00; vertical-align: top; padding: 0 0 0 2px; font-family: Verdana;}
+.topright .group .cart .zero i{ position: absolute; right: 10px; top: 17px; width: 6px; height: 3px; background: url(../img/down.png) 0 0 no-repeat;}
+.topright .group .cart .zero span{ display: none; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; font-size: 0; line-height: 0; 
+	overflow: hidden; background: #fff;
+}
+.topright .group .cart:hover .zero span{ display: block;}
+.topright .group .cart .hoverOpen{ display: none; position: absolute; left: 0; top: 36px; background: #fff; border:1px solid #e5e5e5; width: 312px;}
+.topright .group .cart:hover .hoverOpen{display: block;}
+/*空购物车*/
+.topright .group .cart:hover .hoverOpen .kongcart{ text-align: center; line-height: 100px; color: #999;}
+/*有货购物车*/
+.topright .group .cart .hoverOpen .title{color: #333; font-weight: bold; padding: 10px 10px 0 10px;}
+.topright .group .cart .hoverOpen .other{ display: block; padding: 0 10px; text-align: right; color: #333;}
+.topright .group .cart .hoverOpen .glists{ border-bottom: 1px solid #eee; margin: 0 10px;}
+.topright .group .cart .hoverOpen .glists .glist{ position: relative; line-height: 20px; padding-bottom: 10px;}
+.topright .group .cart .hoverOpen .glists .glist .ginfo{ float: left; width: 100%; }
+.topright .group .cart .hoverOpen .glists .glist .ginfo .aline{ padding: 0 0 0 50px; position: relative;}
+.topright .group .cart .hoverOpen .glists .glist .ginfo .aline .name{ display: block; width: 154px; height: 20px; color: #666;
+	white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.topright .group .cart .hoverOpen .glists .glist .ginfo .aline .name:hover{ color: #F22E00;}
+.topright .group .cart .hoverOpen .glists .glist .ginfo .aline .price{ color: #333; position: absolute; right: 0; top: 0; color: #999; }
+.topright .group .cart .hoverOpen .glists .glist .ginfo .aline .price strong{ font-family: Verdana; color: #F22E00;}
+.topright .group .cart .hoverOpen .glists .glist .ginfo .bline{ padding: 0 0 0 50px; position: relative;}
+.topright .group .cart .hoverOpen .glists .glist .ginfo .bline .saleprop{ display: block; color: #999; width: 197px; height: 20px; 
+	white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.topright .group .cart .hoverOpen .glists .glist .ginfo .bline .del{ color: #333; position: absolute; right: 0; top: 0;}
+.topright .group .cart .hoverOpen .glists .glist .ginfo .bline .del:hover{ color: #F22E00;}
+.topright .group .cart .hoverOpen .glists .glist .pic{ float: left; margin-left: -100%; width: 40px; position: relative;}
+.topright .group .cart .hoverOpen .glists .glist .pic:hover{ opacity: .8;}
+.topright .group .cart .hoverOpen .glists .glist .pic img{ vertical-align: top;}
+.topright .group .cart .hoverOpen .tocartwarp{ text-align: right; padding: 0px 10px 10px 10px; line-height: 24px;}
+.topright .group .cart .hoverOpen .tocart{ display: inline-block; vertical-align: top; background: #f40; color: #fff; font-weight: bold; 
+	padding: 0 10px; border-radius: 2px; line-height: 24px; float: none;
+}
+/*我的订单*/
+.topright .group .order{ float: left; position: relative; padding: 0 1px;}
+.topright .group .order:hover{ background: #e5e5e5;}
+.topright .group .order .zero{ position: relative; z-index: 1; display: block; color: #666; background: #f5f5f5; white-space: nowrap; padding: 0 26px 0 10px;}
+.topright .group .order:hover .zero{ background: #fff;}
+.topright .group .order .zero:hover{ color: #f22e00;}
+.topright .group .order i{ position: absolute; right: 10px; top: 17px; width: 6px; height: 3px; background: url(../img/down.png) 0 0 no-repeat;}
+.topright .group .order span{ display: none; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; font-size: 0; line-height: 0; overflow: hidden; background: #fff;}
+.topright .group .order:hover span{ display: block;}
+.topright .group .order .hoverOpen{ display: none; position: absolute; left: 0; top: 36px; background: #fff; border:1px solid #e5e5e5;}
+.topright .group .order:hover .hoverOpen{display: block;}
+.topright .group .order .hoverOpen a{ float: none; display: block; color: #666; white-space: nowrap; padding: 0 10px; line-height: 30px}
+.topright .group .order .hoverOpen a:hover{ background: #f5f5f5;}
+/*卖家中心*/
+.topright .group .mai{ float: left; position: relative; padding: 0 1px;}
+.topright .group .mai:hover{ background: #e5e5e5;}
+.topright .group .mai .zero{ position: relative; z-index: 1; display: block; color: #666; background: #f5f5f5; white-space: nowrap; padding: 0 26px 0 10px;}
+.topright .group .mai:hover .zero{ background: #fff;}
+.topright .group .mai .zero:hover{ color: #f22e00;}
+.topright .group .mai i{ position: absolute; right: 10px; top: 17px; width: 6px; height: 3px; background: url(../img/down.png) 0 0 no-repeat;}
+.topright .group .mai span{ display: none; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; font-size: 0; line-height: 0; overflow: hidden; background: #fff;}
+.topright .group .mai:hover span{ display: block;}
+.topright .group .mai .hoverOpen{ display: none; position: absolute; left: 0; top: 36px; right: 0; background: #fff; border:1px solid #e5e5e5;}
+.topright .group .mai:hover .hoverOpen{display: block;}
+.topright .group .mai .hoverOpen a{ float: none; display: block; color: #666; white-space: nowrap; padding: 0 10px; line-height: 30px}
+.topright .group .mai .hoverOpen a:hover{ background: #f5f5f5;}
+/*微博*/
+.topright .group .weibo{ position: relative; width: 20px; text-indent: -999em;}
+.topright .group .weibo i{ position: absolute; left: 8px; top: 8px; width: 20px; height: 20px; background: url(../img/wei.png) no-repeat 0 0;}
+/*微信*/
+.topright .group .weixin{ float: left; position: relative;}
+.topright .group .weixin a{ display: block; width: 20px; text-indent: -999em; padding: 0 8px; }
+.topright .group .weixin a i{ position: absolute; left: 8px; top: 8px; width: 20px; height: 20px; background: url(../img/wei.png) no-repeat -30px 0;}
+.topright .group .weixin .hoverOpen{ display: none; position: absolute; left: -45px; top: 36px; width: 260px; height: 120px;  background: #fff; border:1px solid #e5e5e5;}
+.topright .group .weixin:hover .hoverOpen{display: block;}
+.topright .group .weixin .hoverOpen i{ position: absolute; left: 54px; top: -7px; width: 14px; height: 7px; background: url(../img/up.png) no-repeat 0 0; }
+
+/*热线电话*/
+.topright .group .hotphone{ float: left; color: #666; padding: 0 8px;}
+.topright .group .hotphone strong{ vertical-align: top; font-family: Tahoma; color: #F22E00; }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="shared/styles/sunburst.css">
+	<script src="shared/highlight.pack.js"></script>
+	<script>
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+	<!-- 标题和简介 -->
+	<h1>doT</h1>
+	<p>Javascript 模板引擎：doT.js 是为浏览器和Node.js 准备的 JavaScript 模板引擎。</p>
+
+	<!-- 示例及来源 -->
+	<div>
+		<a target="_blank" href="../src/doT/examples">插值</a>
+		<a target="_blank" href="../src/doT/examples/conditionals.html">条件语句</a>
+		<a target="_blank" href="../src/doT/examples/array.html">数组</a>
+		<a target="_blank" href="../src/doT/examples/evaluation.html">鉴定(对象)</a>
+		<a target="_blank" href="../src/doT/examples/encode.html">编码</a>
+	</div>
+
+	<!-- 执行说明 -->
+	<div>
+		<h2>执行：</h2>
+		<h3>1、导入css和js</h3>
+		<pre><code class="xml">
+&lt;script type="text/javascript" src="doT.min.js"&gt;&lt;/script&gt;
+		</code></pre>
+		<h3>2、简单的使用doT</h3>
+		<pre><code class="javascript">
+&lt;script type="text/javascript"&gt;
+	// 1. 完成 template 函数
+	var tempFn = doT.template('&lt;h1&gt;Here is a sample template {{=it.foo}}&lt;/h1&gt;');
+
+	// 2. 可以在任何时候多次调用 template 方法
+	var resultText = tempFn({foo: 'with doT'});
+&lt;/script&gt;
+		</code></pre>
+	</div>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="shared/styles/sunburst.css">
+	<link rel="stylesheet" href="shared/example.css">
+	<script src="shared/highlight.pack.js"></script>
+	<script>
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+	<!-- 标题和简介 -->
+	<h1>bitty<span>(v1.1)</span></h1>
+
+	<!-- API、示例、来源 -->
+	<h3>
+		<a href="#api">API</a>
+		<a target="_blank" href="../src/bitty/examples">demo</a>
+	</h3>
+	<p>
+		<strong>bitty：</strong>
+		<span>整站ajax框架，bitty是一个基于jQuery、jquery.history.js（地址栏历史记录jquery版本）、doT.js（Javascript模板引擎）的整站式ajax框架。</span>
+	</p>
+	<p>
+		<strong>基本原理: </strong>
+		<span>bitty通过发送请求的头部信息让服务器端程序识别该请求是否是Ajax请求；若是，则返回Josn数据；否则返回html。另外，当bitty发送Ajax请求，还附带有其他头部信息；服务器端程序则需做相应的处理，最后返回所需的最小的JSON数据。</span>
+	</p>
+	<p>
+		<strong>JSON数据格式: </strong>
+		<span>
+			<pre><code class="JSON">
+	{"data":{	//页面数据，和模板一一对应；必须
+		"p0":{"title": "页面第一个模块的数据"},
+		"p1":{"title": "页面第二个模块的数据"},
+		"p2":{"title": "页面第三个模块的数据"}
+	},"mod":{	//页面模板需要插入的位置的id，和模板一一对应；必须
+		"p0":"mod0",
+		"p1":"mod1",
+		"p2":"mod2"
+	},"temp":{	//页面模板内容，由服务端程序通过“temp_url”统一生成
+		"p0":"&lt;div&gt;页面第一个模板&lt;/div&gt;",
+		"p1":"&lt;div&gt;页面第二个模板&lt;/div&gt;",
+		"p2":"&lt;div&gt;页面第三个模板&lt;/div&gt;"
+	},"temp_id":{	//页面模板id，由服务端程序通过“temp_url”统一生成
+		"p0":"index/h",
+		"p1":"index/c",
+		"p2":"index/f"
+	},"temp_url":[	//页面模板路径，必须
+		"index/h", 
+		"index/c", 
+		"index/f"
+	],"js_url":[	//页面需要加载的js路径；可选
+		"index.js"
+	],"css_url":[	//页面需要加载的css路径；可选
+		"index.css"
+	]}
+			</code></pre>
+		</span>
+	</p>
+
+	<!-- 执行说明 -->
+	<div>
+		<h2>执行：</h2>
+		<h3>1、html头部内容（该部分必须包含整站的基本骨架，并在此处引入bitty.js及其依赖的js框架）</h3>
+		<pre><code class="xml">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset="utf-8" /&gt;
+	&lt;title&gt;bitty&lt;/title&gt;
+	&lt;script type="text/javascript" src="jquery.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="jquery.history.min.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="doT.min.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="bitty.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;!-- 整站基本骨架，整个完整的内容都将填充到"frame_h"、"frame"、"frame_f"中 --&gt;
+	&lt;div class="site"&gt;
+		&lt;div id="frame_h"&gt;&lt;/div&gt;
+		&lt;div id="frame"&gt;&lt;/div&gt;
+		&lt;div id="frame_f"&gt;&lt;/div&gt;
+	&lt;/div&gt;
+		</code></pre>
+
+		<h3>2、初始化bitty，并加载解析首次请求的页面（下面的 $data 为请求的页面的JSON数据）</h3>
+		<pre><code class="javascript">
+&lt;script&gt;(function(window, undefined) {var app = window.app = window.app || {};app.bitty.initData = ' . $data . ';app.bitty.loadPage(window.location.href, app.bitty.initData);app.bitty.bindLink();})(window);&lt;/script&gt;
+		</code></pre>
+
+		<h3>3、html尾部内容，服务器端的内容已经全部加载完成</h3>
+		<pre><code class="xml">
+&lt;/body&gt;
+&lt;/html&gt;
+		</code></pre>
+
+		<h3>4、客户端&lt;a&gt;链接的参数设置</h3>
+		<pre><code class="xml">
+&lt;!-- 只有当a标签的属性 target="_self" 时，该标签才会绑定Ajax请求事件 --&gt;
+&lt;!-- 属性data-temp为请求页面的模板id，id之间用","分开，该属性为空或不作设置时默认请求链接页面的所有模板；属性is-history设置该链接url是否加入地址栏历史记录，默认为"true"加入历史；属性is-scrollTop设置该链接页面加载 完成后是否滚动到窗口顶部，默认为"true"滚动到顶部 --&gt;
+&lt;a&gt; href="index.html" data-temp="index/h,index/c" is-history="false" is-scrollTop="false" &lt;/a&gt;
+		</code></pre>
+	</div>
+
+	<!-- API -->
+	<div id="api">
+		<h2>API：</h2>
+		<h3>属性：</h3>
+		<h3>方法：</h3>
+		<h3>refresh</h3>
+		<p>Ajax刷新当前页面</p>
+
+		<h4>Example</h4>
+		<h5>Example</h5>
+		<pre><code class="javascript">
+&lt;script type="text/javascript"&gt;
+	app.bitty.refresh();
+&lt;/script&gt;
+		</code></pre>
+
+		<h3>getCompleteHtml</h3>
+		<p>获取套好的html，该方法用于取得JSON数据后，需要将数据通过bitty解析的情况。</p>
+		<h4>Parameters</h4>
+		<p>
+			<strong>data</strong>
+			<em>{JSON}</em>
+			<span>该参数要求与bitty要求的JSON数据格式一致</span>
+		</p>
+		
+		<h4>Example</h4>
+		<h5>Example</h5>
+		<pre><code class="javascript">
+&lt;script type="text/javascript"&gt;
+	var demo = $('#demo'),
+		data = {"data":{	
+			"p0":{"title": "页面第一个模块的数据"},
+			"p1":{"title": "页面第二个模块的数据"}
+		},"mod":{	
+			"p0":"mod0",
+			"p1":"mod1"
+		},"temp":{	
+			"p0":"&lt;div&gt;页面第一个模板&lt;/div&gt;",
+			"p1":"&lt;div&gt;页面第二个模板&lt;/div&gt;"
+		},"temp_id":{	
+			"p0":"index/h",
+			"p1":"index/c"
+		},"temp_url":[	
+			"index/h", 
+			"index/c"
+		]},
+		html = app.bitty.getCompleteHtml(data);
+	demo.html(html);
+&lt;/script&gt;
+		</code></pre>
+
+		<h3>request</h3>
+		<p>加载新页面，Ajax请求获取数据，解析并插入到页面上</p>
+		<h4>Parameters</h4>
+		<p>
+			<strong>url</strong>
+			<em>{string}</em>
+			<span>页面url</span>
+		</p>
+		<p>
+			<strong>temps</strong>
+			<em>{Array}</em>
+			<span>页面模板id</span>
+		</p>
+		<p>
+			<strong>isHistory</strong>
+			<em>{boolean}</em>
+			<span>是否加入地址栏历史记录，默认为true，加入历史记录</span>
+		</p>
+		<p>
+			<strong>title</strong>
+			<em>{string}</em>
+			<span>页面标题</span>
+		</p>
+		
+		<h4>Example</h4>
+		<h5>Example -- 简单调用</h5>
+		<pre><code class="javascript">
+&lt;script type="text/javascript"&gt;
+	app.bitty.request({url:'./newpage.html'});
+&lt;/script&gt;
+		</code></pre>
+
+		<h5>Example -- 该页面url不加入历史记录和设置新标题</h5>
+		<pre><code class="javascript">
+&lt;script type="text/javascript"&gt;
+	app.bitty.request({url:'./newpage.html', isHistory: false, title: '这是新页面，点击浏览器 后退/前进 按钮不会出现该页面'});
+&lt;/script&gt;
+		</code></pre>
+
+		<h3>ajaxForm</h3>
+		<p>Ajax表单提交</p>
+		<h4>Parameters</h4>
+		<p>
+			<strong>formId</strong>
+			<em>{string}</em>
+			<span>可缺省，表单id；缺省时 submitId 参数必填</span>
+		</p>
+		<p>
+			<strong>submitId</strong>
+			<em>{Array}</em>
+			<span>可缺省，提交的按钮；缺省时 formId 参数必填</span>
+		</p>
+		<p>
+			<strong>url</strong>
+			<em>{boolean}</em>
+			<span>可缺省，提交的地址；缺省时默认提交到当前地址或表单的 action 属性地址</span>
+		</p>
+		<p>
+			<strong>method</strong>
+			<em>{string}</em>
+			<span>可缺省，提交的方式；缺省时默认取表单 method 属性的值，method为空时默认'GET'提交</span>
+		</p>
+		<p>
+			<strong>isHistory</strong>
+			<em>{string}</em>
+			<span>可缺省， 新页面地址是否加入历史地址记录， 默认 true 加入</span>
+		</p>
+		<p>
+			<strong>title</strong>
+			<em>{string}</em>
+			<span>可缺省，新页面标题，缺省下取当前页面标题</span>
+		</p>
+		<p>
+			<strong>temps</strong>
+			<em>{string}</em>
+			<span>可缺省，请求新页面所需的模板id；多个模板id用","隔开；缺省时，服务器返回完整的页面模板；</span>
+		</p>
+		
+		<h4>Example</h4>
+		<h5>Example -- 简单调用</h5>
+		<pre><code class="xml">
+&lt;form id="login" action="./login.html"&gt;
+	&lt;input type="text" /&gt;
+	&lt;input type="password" /&gt;
+	&lt;input type="submit" onclick="app.bitty.ajaxForm({formId: 'login'});"&gt;
+&lt;/form&gt;
+		</code></pre>
+
+		<h5>Example -- 设置url覆盖表单action属性，表单POST提交</h5>
+		<pre><code class="xml">
+&lt;form id="login" action="./login.html" method="post"&gt;
+	&lt;input type="text" /&gt;
+	&lt;input type="password" /&gt;
+	&lt;input type="submit" onclick="app.bitty.ajaxForm({formId: 'login', url: './post_login.html'});"&gt;
+&lt;/form&gt;
+		</code></pre>
+	</div>
+</body>
+</html>

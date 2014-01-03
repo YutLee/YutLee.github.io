@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>doT</title>
+	<script type="text/javascript" src="../src/js/doT.min.js"></script>
+</head>
+<body>
+	<h2>编码</h2>
+	<p>当需要替换的数据需要进行编码时，不是使用"=",而是使用"!"</p>
+	<div class="demo"></div>
+	<script>
+		var data = {'uri':'http://bebedo.com/?keywords=Yoga'};
+		var temp = 'Visit {{!it.uri}}';
+		var tempFn = doT.template(temp);
+		var resultHtml = tempFn(data);
+		document.getElementsByClassName('demo')[0].innerHTML = resultHtml;
+	</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿@charset "utf-8";
+/* ============================== 重置 ============================== */
+html {
+	height: 100%;
+	font-size: 12px;
+	line-height: 20px;
+	font-family: Arial, Simsun, sans-serif;
+	background: #fff;
+	color: #666;
+}
+body {
+	height: 100%;
+	position: relative;
+	margin: 0;
+}
+/* ============================== 库 ============================== */
+.ku_fix {
+	zoom: 1;
+}
+.ku_fix:after {
+	display: block;
+	content: "";
+	height: 0;
+	clear: both;
+	overflow: hidden;
+	visibility: hidden;
+}
+/* ============================== 框架 ============================== */
+.site_w{width: 1200px; margin: auto;}
+/* ============================== 当前 ============================== */
+.nav{ background: #FE7000; height: 40px; line-height: 40px;}
+.nav .zero{ float: left; position: relative; }
+.nav .zero:hover{ background-color: #e65310; }
+.nav .list{ display: block; text-align: center; text-indent: -999em; color: #fff;
+	background-image: url(../img/nav.png); background-repeat: no-repeat; -ms-background-position-y: 0; background-position-y: 0; 
+}
+.nav .list.chose{ background-color: #e65310; }
+.nav .list.index{ width: 100px; -ms-background-position-x: 0; background-position-x: 0; }
+.nav .list.store{ width: 130px; -ms-background-position-x: -100px; background-position-x: -100px; }
+.nav .list.gStore{ width: 130px; -ms-background-position-x: -230px; background-position-x: -230px; }
+.nav .list.shop{ width: 130px; -ms-background-position-x: -360px; background-position-x: -360px; }
+.nav .list.tShop{ width: 130px; -ms-background-position-x: -490px; background-position-x: -490px; }
+.nav .list.buy{ width: 130px; -ms-background-position-x: -620px; background-position-x: -620px; }
+.nav .list.aStore{ width: 130px; -ms-background-position-x: -750px; background-position-x: -750px; }
+.nav .list.map{ width: 130px; -ms-background-position-x: -880px; background-position-x: -880px; }
+/*弹出*/
+.nav .storeClass .hoverOpen{ position: absolute; left: 0; right: 0; top: 40px; background-color: #e65310; display: none; }
+.nav .storeClass:hover .hoverOpen{ display: block;}
+/*一级菜单*/
+.nav .storeClass .one{ padding: 0 0 8px 0;}
+.nav .storeClass .one a{ display: block; padding: 0 20px; line-height: 30px; font-size: 14px; font-weight: bold; color: #fff; text-decoration: none; }
+.nav .storeClass .one a:hover{ background-color: #f75b11;}
+/*二级菜单*/
+.nav .storeClass .two{display: none;}
+.nav .storeClass .two a{ display: block;}

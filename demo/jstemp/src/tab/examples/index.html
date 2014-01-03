@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>选项卡</title>
+	<link rel="stylesheet" href="../src/css/style.css">
+	<script type="text/javascript" src="../../shared/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="../src/js/jquery.tab.min.js"></script>
+</head>
+<body>
+	<ul class="tabs">
+		<li data-role="tab">深圳</li>
+		<li data-role="tab">北京</li>
+		<li data-role="tab">上海</li>
+		<li data-role="tab">厦门</li>
+	</ul>
+	<dl class="contents">
+		<dd data-role="content">
+			深圳（shenzhen）中华人民共和国副省级城市之一，计划单列市，全国文明城市，国际花园城市，是中国四大一线城市之一，国际重要的空海枢纽和外贸口岸。深圳是中国改革开放以来所设立的第一个经济特区，是中国改革开放的窗口，已发...
+		</dd>
+		<dd data-role="content">
+			北京，中华人民共和国首都、直辖市和国家中心城市，中国的政治中心、文化中心，是世界著名古都和现代化国际大都市。中华人民共和国中央人民政府和全国人民代表大会所在地。北京位于华北平原的东北边缘，背靠燕山，有永定河流经老...
+		</dd>
+		<dd data-role="content">
+			上海（Shanghai），简称“沪”或“申”，中国第一大城市，中华人民共和国直辖市之一，中国国家中心城市，繁荣的国际大都市。上海地处长江入海口，东向东海，隔海与日本九州岛相望，南濒杭州湾，西与江苏兴化、浙江两省相接，共同...
+		</dd>
+		<dd data-role="content">
+			厦门，位于福建东南端，南与漳州接壤，北与泉州相邻，东南与金门岛隔海相望，曾是国共双方距离最短的前线阵地。公元282年置同安县，属晋安郡，1933年设市。既是副省级城市、计划单列市，又是经济特区、国家综合配套改革试验区。...
+		</dd>
+	</dl>
+	<script>
+		$(document).ready(function() {
+			$('.tabs').tab();
+		});
+	</script>
+</body>
+</html>

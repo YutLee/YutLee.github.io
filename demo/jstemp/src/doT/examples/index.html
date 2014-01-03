@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>doT</title>
+	<script type="text/javascript" src="../src/js/doT.min.js"></script>
+</head>
+<body>
+	<h2>插值</h2>
+	<p>简单的替换</p>
+	<div class="demo"></div>
+	<script>
+		var data = {'name':'Jake','age':31};
+		var temp = '<div>Hi {{=it.name}}!</div><div>{{=it.age}}</div>';
+		var tempFn = doT.template(temp);
+		var resultHtml = tempFn(data);
+		document.getElementsByClassName('demo')[0].innerHTML = resultHtml;
+	</script>
+</body>
+</html>
