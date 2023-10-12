@@ -1,0 +1,476 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>贪吃蛇(Greedy snake)</title>
+  <meta name="keywords" content="贪吃蛇,Greedy snake">
+  <meta name="description" content="贪吃蛇,Greedy snake">
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    .flex {
+      display: -webkit-box;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .cell {
+      -webkit-box-flex: 1;
+      flex: 1;
+      display: block;
+      max-width: 100%;
+      flex-basis: 0;
+      min-width: 0;
+    }
+
+    @keyframes flashes {
+      0% {background-color: #f7c2c2;}
+      50% {background-color: #fd6262;}
+      100% {background-color: #f50a0a;}
+    }
+
+    #space {
+      padding: 3vw;
+      /* margin: 3vw auto;
+      border: 4px solid #c4c4c4; */
+    }
+
+    .column {
+      width: 9vw;
+      height: 9vw;
+      background-color: #aaa;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .snake {
+      background-color: #444;
+    }
+
+    .food {
+      animation-name: flashes;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+
+    .handle {
+      background-color: #c4c4c4;
+      border-radius: 168px;
+      width: 168px;
+      height: 168px;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      margin-left: -84;
+    }
+
+    .button {
+      width: 48px;
+      height: 48px;
+      background: #E1E1E1;
+      border-radius: 8px;
+      position: absolute;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .button:active {
+      box-shadow: none;
+    }
+
+    .left {
+      left: 10px;
+      top: 50%;
+      margin-top: -24px;
+    }
+
+    .top {
+      top: 10px;
+      left: 50%;
+      margin-left: -24px;
+    }
+
+    .right {
+      right: 10px;
+      top: 50%;
+      margin-top: -24px;
+    }
+
+    .bottom {
+      bottom: 10px;
+      left: 50%;
+      margin-left: -24px;
+    }
+
+    .center {
+      border-radius: 20px;
+      width: 40px;
+      height: 40px;
+      top: 50%;
+      left: 50%;
+      margin: -20px 0 0 -20px;
+      text-align: center;
+      line-height: 40px;
+    }
+
+    .shadow{position: fixed;top:0;left: 0;right: 0;bottom: 0;background-color: rgba(0,0,0,.45);display: none;}
+    .shadow.open{display: block;}
+    .shadow .alert{background-color: rgba(255,255,255,.9);border-radius: 5px;box-shadow: 1px 2px 8px rgba(0,0,0,.5);width: 250px;height: 160px;left: 50%;top:50%;position: absolute;text-align: center;margin: -80px 0 0 -125px;}
+    .shadow button{border:none;background-color: rgb(68, 183, 58);color: #fff;padding: 10px 20px;border-radius: 4px;outline: none;transition: all 300ms;-webkit-transition: all 300ms;}
+    .shadow button:hover {background-color: rgba(68, 183, 58, .9);}
+    .shadow button:active{box-shadow: 0 2px 6px rgba(0,0,0,.5);}
+    .shadow p{margin:0 0 16px 0;}
+  </style>
+</head>
+<body>
+  <div id="space"></div>
+  <div id="handle" class="handle">
+    <div id="key-37" class="button left"></div>
+    <div id="key-38" class="button top"></div>
+    <div id="key-39" class="button right"></div>
+    <div id="key-40" class="button bottom"></div>
+    <div id="key-32" class="button center">暂停</div>
+  </div>
+  <div id="shadow" class="shadow" onclick="this.className='shadow'">
+    <div class="alert">
+      <h4 id="alert-title">游戏结束!</h4>
+      <p>你的得分是：<strong id="this-score"></strong></p>
+      <button onclick="restart()">重新开始</button>
+    </div>
+  </div>
+  <script>
+    let maxX = 10, maxY = 11, maxSize = maxX * maxY, snakes = [], emptySpace = [], food
+    let directions = getStep() // createInt(4) // direction 0:左,1:上,2:右,3:下
+    let directionIdx = createInt(4)
+    let direction = directions[directionIdx]
+    let isOver = false, timer, isPause = false
+    let score = 0 // 得分
+    let speed = 500
+
+    createSpaceUI()
+    start()
+
+    window.addEventListener('keydown', handleKeyDown, false)
+
+    document.getElementById('handle').addEventListener('click', handleClick, false)
+
+    function clearEvent (text) {
+      document.getElementById('alert-title').innerHTML = text
+      document.getElementById('this-score').innerHTML = score
+      document.getElementById('shadow').className = 'shadow open'
+      document.removeEventListener('keydown', handleKeyDown, false)
+    }
+
+    function handleClick (event) {
+      const id = event.target.id
+      const keyCode = Number(id.replace('key-', ''))
+
+      if (id === 'handle') return
+
+      handleMove(keyCode)
+    }
+
+    function handleKeyDown (event) {
+      let keyCode = event.which || event.keyCode
+
+      if (keyCode === 65) { // A
+        keyCode = 37
+      } else if (keyCode === 87) { // W
+        keyCode = 38
+      } else if (keyCode === 68) { // D
+        keyCode = 39
+      } else if (keyCode === 83) { // S
+        keyCode = 40
+      }
+
+      handleMove(keyCode)
+    }
+
+    function handleMove (keyCode) {
+      const currentIdx = keyCode - 37
+      const isForward = directionIdx === currentIdx
+      const isBack = directionIdx === currentIdx + (keyCode > 38 ? -2 : 2)
+      const isTurn = !isForward && !isBack && /^(37|38|39|40)$/.test(keyCode)
+      const pauseDom = document.getElementById('key-32')
+
+      if (keyCode === 32) { // 空格
+        if (isPause === true) {
+          isPause = false
+          move()
+          pauseDom.innerHTML = '暂时'
+        } else {
+          isPause = true
+          clearTimeout(timer)
+          pauseDom.innerHTML = '开始'
+        }
+        return
+      }
+
+      if (isForward) {
+        clearTimeout(timer)
+        move()
+      }
+
+      if (isTurn) {
+        clearTimeout(timer)
+        directionIdx = currentIdx
+        direction = directions[directionIdx]
+        move()
+      }
+    }
+
+    /**
+     * 创建空间UI
+     */
+    function createSpaceUI () {
+      const space = createSpace()
+      const dom = document.getElementById('space')
+      let html = ''
+
+      space.forEach(item => {
+        html += `<div class="row flex">`
+        item.forEach(entry => {
+          emptySpace.push(entry)
+          html += `<div class="column" id="${entry[0]}-${entry[1]}"></div>`
+        })
+        html += '</div>'
+      })
+
+      dom.innerHTML = html
+    }
+
+    /**
+     * 获取移动步伐
+     */
+    function getStep (step = 1) {
+      return [[-step, 0], [0, -step], [step, 0], [0, step]]
+    }
+
+    /**
+     * 蛇移动UI
+     */
+    function snakeMove (last = []) {
+      let lastDom
+
+      if (Array.isArray(last)) {
+        lastDom = document.getElementById(`${last[0]}-${last[1]}`)
+
+        if (lastDom) {
+          lastDom.className = 'column'
+        }
+      }
+
+      snakes.forEach(item => {
+        const snakesDom = document.getElementById(`${item[0]}-${item[1]}`)
+
+        if (snakesDom) {
+          snakesDom.className = 'column snake'
+        }
+      })
+    }
+
+    /**
+     * 重新开始游戏
+     */
+    function restart () {
+      const foodDom = document.getElementsByClassName('food')
+      let snakeDom
+
+      snakes.forEach((item, idx) => {
+        snakeDom = document.getElementsByClassName('snake')
+
+        if (snakeDom && snakeDom[0]) {
+          snakeDom[0].className = 'column'
+        }
+      })
+
+      if (foodDom && foodDom[0]) {
+        foodDom[0].className = 'column'
+      }
+
+      snakes = []
+      directionIdx = createInt(4)
+      direction = directions[directionIdx]
+      isOver = false
+      isPause = false
+      score = 0
+      start()
+    }
+
+    /**
+     * 游戏开始
+     */
+    function start () {
+      createSnake()
+      createFood(snakes)
+      snakeMove()
+      move()
+    }
+
+    /**
+     * 生成一个随机整数
+     */
+    function createInt (max) {
+      return Math.floor(Math.random() * max)
+    }
+
+    /**
+     * 在场地内生成随机点
+     */
+    function createPoint (existed = []) {
+      let empty, idx = 0
+
+      empty = emptySpace.filter(item => existed.find(entry => entry[0] === item[0] && entry[1] === item[1]) === undefined)
+      idx = createInt(empty.length)
+
+      return empty[idx]
+    }
+
+    /**
+     * 生成场地
+     */
+    function createSpace () {
+      var space = []
+
+      for (var i = 0; i < maxY; i++) {
+        var xs = []
+        for (var j = 0; j < maxX; j++) {
+          xs.push([j, i])
+        }
+        space.push(xs)
+      }
+      return space
+    }
+
+    /**
+     * 生成食物
+     */
+    function createFood (snakes) {
+      food = createPoint(snakes)
+      document.getElementById(`${food[0]}-${food[1]}`).className = 'column food'
+    }
+
+    /**
+     * 生成蛇
+     */
+    function createSnake () {
+      const snake = createPoint()
+      const { x, y } = nextPoint(snake, 2)
+
+      if (isWall(x, y)) {
+        directionIdx = directionIdx === 0 ? 2 : directionIdx === 1 ? 3 : directionIdx === 2 ? 0 : 1
+        direction = directions[directionIdx]
+      }
+
+      snakes.push(snake)
+
+      if (snake[0] + 1 < maxX) {
+        snakes.push([snake[0] + 1, snake[1]])
+      } else if (snake[0] - 1 < maxX) {
+        snakes.push([snake[0] - 1, snake[1]])
+      } else if (snake[1] + 1 < maxY) {
+        snakes.push([snake[0], snake[1] + 1])
+      } else if (snake[1] - 1 < maxY) {
+        snakes.push([snake[0], snake[1] - 1])
+      }
+    }
+
+    /**
+     * 获取下一步坐标
+     */
+    function nextPoint (point = [], step = 1) {
+      const steps = getStep(step)[directionIdx]
+      return {
+        x: point[0] + steps[0], 
+        y: point[1] + steps[1]
+      }
+    }
+
+    /**
+     * 蛇移动
+     */
+    function move () {
+      const { x, y } = nextPoint(snakes[0])
+      let last
+
+      clearTimeout(timer)
+
+      if (isOver) return
+
+      if (isWall(x, y)) {
+        gameOver('蛇撞墙而亡')
+        return
+      }
+
+      if (isSelf(x, y)) {
+        gameOver('蛇吃了自己')
+        return
+      }
+
+      if (isWin()) {
+        gameOver('蛇吃饱了')
+        return
+      }
+
+      snakes.unshift([x, y])
+
+      if (food[0] === x && food[1] === y) {
+        score += 10
+        createFood(snakes)
+      } else {
+        last = snakes.pop()
+      }
+
+      snakeMove(last)
+
+      timer = setTimeout(() => {
+        move()
+      }, speed)
+    }
+
+    /**
+     * 判断是否墙壁
+     */
+    function isWall (x, y) {
+      return x < 0 || y < 0 || x >= maxX || y >= maxY
+    }
+
+    /**
+     * 判断是否咬到自己
+     */
+    function isSelf (x, y) {
+      const size = snakes.length
+      let self = false
+
+      for (var i = 4; i < size; i++) {
+        if (snakes[i][0] === x && snakes[i][1] === y) {
+          self = true
+          break
+        }
+      }
+
+      return self
+    }
+
+    /**
+     * 判断是否赢了（没有空间了）
+     */
+    function isWin () {
+      return snakes.length === maxSize
+    }
+
+    /**
+     * 游戏结束
+     */
+     function gameOver (text) {
+      isOver = true
+      clearTimeout(timer)
+      clearEvent(text)
+    }
+  </script>
+</body>
+</html>
