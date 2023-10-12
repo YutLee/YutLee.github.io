@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>2048</title>
+    <meta name="keywords" content="2048">
+    <meta name="description" content="2048">
+    <style type="text/css">
+        /* flex */
+        .flex {display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-flex-wrap: wrap;-ms-flex-wrap: wrap;flex-wrap: wrap;}
+        .flex>.cell {-webkit-box-flex: 1;-webkit-flex: 1;-ms-flex: 1;flex: 1;width: 0;-webkit-flex-basis: 0;-ms-flex-preferred-size: 0;flex-basis: 0;max-width: 100%;display: block;/*padding: 0!important;*/position: relative;}
+        body{margin: 0;line-height: 1.5;padding-bottom:48px;}
+        header{background-color: #673ab7;color: #fff;height: 52px;transition: all 200ms ease-in-out;-webkit-transition: all 200ms ease-in-out;}
+        header.hide{margin-top: -52px;}
+        header a{float: left;font-size: 0;}
+        header h4{margin: 0;font-size: 20px;line-height: 54px;text-align: center;font-weight: normal;}
+
+        section p{padding: 30px 16px 10px 16px;margin: 0;text-align: center;position: relative;}
+        section strong{color: #f44336;display: block;font-size: 30px;font-weight: normal;}
+        section span{color: #009999;display: block;}
+        section .count{position: absolute;bottom: 60px;left: 0;right: 0;text-align: center;animation:move-up 600ms ease-in;-webkit-animation:move-up 600ms ease-in;font-size: 20px;color: #673ab7;font-style: normal;}
+        @-webkit-keyframes move-up{
+            0% {opacity: 1;bottom: 60px;}
+            100% {opacity: 0;bottom: 150px;}
+        }
+        @keyframes move-up{
+            0% {opacity: 1;bottom: 60px;}
+            100% {opacity: 0;bottom: 150px;}
+        }
+        .board{margin: 16px;background-color: #673ab7;padding: 5px;border-radius: 5px;position:relative;}
+        @media(min-width: 769px) {
+            .board, section{width: 500px;margin: 16px auto;}
+            header{height: 64px;}
+            header.hide{margin-top: -64px;}
+            header h4{line-height: 64px;font-size: 28px;}
+        }
+        .board .block{position: absolute;top: 0;left: 0;margin: 0;border-radius: 5px; text-align:center;font-size: 2em;color: #fff;background-color: #e5aa73;animation:fade-in 200ms ease-out;-webkit-animation:fade-in 200ms ease-out;}
+        @keyframes fade-in{
+            0% {transform:scale(0.5);-webkit-transform:scale(0.5);opacity: 0;}
+            100% {transform:scale(1.0);-webkit-transform:scale(1.0);opacity: 1;}
+        }
+        @-webkit-keyframes fade-in{
+            0% {transform:scale(0.5);-webkit-transform:scale(0.5);opacity: 0;}
+            100% {transform:scale(1.0);-webkit-transform:scale(1.0);opacity: 1;}
+        }
+        @keyframes pop{
+            0% {transform:scale(1.0);-webkit-transform:scale(1.0);}
+            50% {transform:scale(1.2);-webkit-transform:scale(1.2);box-shadow: 0 0 5px #e5aa73;}
+            100% {transform:scale(1.0);-webkit-transform:scale(1.0);box-shadow: 0 0 1px #e5aa73;}
+        }
+        @-webkit-keyframes pop{
+            0% {transform:scale(1.0);-webkit-transform:scale(1.0);}
+            50% {transform:scale(1.2);-webkit-transform:scale(1.2);box-shadow: 0 0 5px #e5aa73;}
+            100% {transform:scale(1.0);-webkit-transform:scale(1.0);box-shadow: 0 0 1px #e5aa73;}
+        }
+        .board ul{margin: 0;padding: 0;}
+        .board li{background-color: rgba(255,255,255,.2);margin: 5px;border-radius: 5px;position: relative;-ms-flex-align: center;-webkit-align-items: center;-webkit-box-align: center;align-items: center;}
+        .board li canvas{width: 100%;opacity: 0;vertical-align: top;}
+        .board li span{ position: absolute; width: 100%; height: 100%; opacity: 0;vertical-align: top;border-radius: 5px;display: inline-block;text-align: center;top: 0;left: 0;color: #fff; font-size: 0.8em; /*transform: translateZ(0);-webkit-transform: translateZ(0); transition: top 200ms, left 200ms;-webkit-transition: top 200ms, left 200ms;*/}
+        .board li span.show{opacity: 1;}
+        .board li span.fade-in{opacity: 1;animation:fade-in 200ms ease-out;-webkit-animation:fade-in 200ms ease-out;}
+        .shadow{position: fixed;top:0;left: 0;right: 0;bottom: 0;background-color: rgba(0,0,0,.45);display: none;}
+        .shadow.open{display: block;}
+        .shadow .alert{background-color: rgba(255,255,255,.9);border-radius: 5px;box-shadow: 1px 2px 8px rgba(0,0,0,.5);width: 250px;height: 160px;left: 50%;top:50%;position: absolute;text-align: center;margin: -80px 0 0 -125px;}
+        .shadow button{border:none;background-color: rgba(103, 58, 183, 1);color: #fff;padding: 10px 20px;border-radius: 4px;outline: none;transition: all 300ms;-webkit-transition: all 300ms;}
+        .shadow button:hover {background-color: rgba(103, 58, 183, .9);}
+        .shadow button:active{box-shadow: 0 2px 6px rgba(0,0,0,.5);}
+        .shadow p{margin:0 0 16px 0;}
+        .fab { background-color: #F44336; background-color: rgba(244, 67, 54, 1); border: 0; border-radius: 2px; box-shadow: 0 1px 3px rgba(0, 0, 0, .15), 0 1px 3px 1px rgba(0, 0, 0, .15); cursor: pointer; display: inline-block; border-radius: 50%; height: 56px; width: 56px; text-align: center; font-size: 24px; color: #fff; margin-bottom: 0; padding: 8px; text-align: center; text-transform: uppercase; transition: background-color .3s cubic-bezier(.4, 0, .2, 1), box-shadow .3s cubic-bezier(.4, 0, .2, 1), color .3s cubic-bezier(.4, 0, .2, 1); user-select: none; -webkit-user-select: none; vertical-align: middle; line-height: 1.5; position: fixed; bottom: 16px; right: 16px; outline: none; }
+        .fab:hover, .fab:active {
+            -webkit-tap-highlight-color: transparent;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .15), 0 1px 3px 1px rgba(0, 0, 0, .15), 0 3px 9px rgba(0, 0, 0, .3)
+        }
+    </style>
+</head>
+<body>
+    <img src="2016-06-09_2-23-18.png" style="width:0px; height:0px; overflow:hidden;font-size: 0;line-height: 0;display: block;">
+    <header>
+        <a href="javascript:void(0);">back</a>
+        <h4>2048</h4>
+    </header>
+    <section class="flex">
+        <p id="countwrap" class="cell">
+            <strong id="score">0</strong>
+            <span>分数</span>
+        </p>
+        <p class="cell">
+            <strong id="bestscore">0</strong>
+            <span style="font-size:1.2rem;">最佳成绩</span>
+        </p>
+    </section>
+    <div id="board" class="board">
+        <ul class="row flex">
+            <li class="cell"><canvas width="1" height="1"></canvas><span></span></li>
+            <li class="cell"><span></span></li>
+            <li class="cell"><span></span></li>
+            <li class="cell"><span></span></li>
+        </ul>
+        <ul class="row flex">
+            <li class="cell"><canvas width="1" height="1"></canvas><span></span></li>
+            <li class="cell"><span></span></li>
+            <li class="cell"><span></span></li>
+            <li class="cell"><span></span></li>
+        </ul>
+        <ul class="row flex">
+            <li class="cell"><canvas width="1" height="1"></canvas><span></span></li>
+            <li class="cell"><span></span></li>
+            <li class="cell"><span></span></li>
+            <li class="cell"><span></span></li>
+        </ul>
+        <ul class="row flex">
+            <li class="cell"><canvas width="1" height="1"></canvas><span></span></li>
+            <li class="cell"><span></span></li>
+            <li class="cell"><span></span></li>
+            <li class="cell"><span></span></li>
+        </ul>
+    </div>
+    <button type="button" class="fab" onclick="restart();">+</button>
+    <div id="shadow" class="shadow" onclick="this.className='shadow'">
+        <div class="alert">
+            <h4>游戏结束!</h4>
+            <p>你的得分是：<strong id="this-score"></strong></p>
+            <button onclick="restart();">重新开始</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+    // var headerDom = document.getElementsByTagName('header')[0];
+
+    // window.onscroll = function() {
+    //     if(document.body.scrollTop > 2) {
+    //         headerDom.className = 'hide';
+    //     }else {
+    //         headerDom.className = '';
+    //     }
+    // };
+
+    // document.body.scrollTop = 3;
+
+    var boardArray = [[0,0,0], [0,1,0], [0,2,0], [0,3,0],
+                    [1,0,0], [1,1,0], [1,2,0], [1,3,0],
+                    [2,0,0], [2,1,0], [2,2,0], [2,3,0],
+                    [3,0,0], [3,1,0], [3,2,0], [3,3,0]];
+
+    var initBoardArray = createNewArray(boardArray);
+
+    function createNewArray(arr) {
+        var newArr = [];
+        for(var i = 0; i < arr.length; i++) {
+            var initBoardArray = [].concat([], boardArray);
+            newArr.push([].concat([], arr[i]));
+        }
+        return newArr;
+    }
+
+    function log(str) {
+        var logDom = document.createElement('p');
+        logDom.innerText = str;
+        document.body.appendChild(logDom);
+    }
+
+    var colorList = {
+        '2'   : '#e5aa73',
+        '4'   : '#e59673',
+        '8'   : '#e58c73',
+        '16'  : '#e57d73',
+        '32'  : '#e57373',
+        '64'  : '#ef5350',
+        '128' : '#f44336',
+        '256' : '#e53935',
+        '512' : '#d32f2f',
+        '1024': '#c62828',
+        '2048': '#b71c1c'
+    }
+
+    //写cookies
+    function setCookie(name,value, days) {
+        var exp = new Date();
+        exp.setTime(exp.getTime() + (days || 30)*24*60*60*1000);
+        document.cookie = name + '='+ escape(value) + ';expires=' + exp.toGMTString();
+    }
+
+    //读取cookies
+    function getCookie(name) {
+        var arr,reg=new RegExp('(^| )'+name+'=([^;]*)(;|$)');
+        if(arr=document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return null;
+    }
+
+
+    /**
+     * 生成2或4的随机数
+     * @return {number} 返回生成的随机数
+     */
+    function createNumber() {
+        return Math.random() > 0.9 ? 4 : 2;
+    }
+
+    /**
+     * 在空白格子中随机生成一个索引
+     * @return {number} 返回生成的索引
+     */
+    function createBlockIndex() {
+        var emptyArray = [], len = boardArray.length, i = 0;
+        while(i < len) {
+            if(boardArray[i][2] == 0) {
+                emptyArray.push(i);
+            }
+            i++;
+        }
+        var idx = parseInt(Math.random() * emptyArray.length);
+        return emptyArray[idx];
+    }
+    /**
+     * 删除元素
+     * @param  {element} el 需要删除的元素
+     */
+    function removeElement(el) {
+        if(el.remove) {
+            el.remove();
+        }else {
+            el.parentNode && el.parentNode.removeChild(el);
+        }
+    }
+
+    function mergeSameNumber(arr) {
+        var arra = [].concat([], arr);
+        var emptyIdx = 0, first, slideArr = [];
+        // console.log(JSON.stringify(arra));
+        for(var i = 0; i < arr.length; i++) {
+            if(arr[i][2] == 0) {
+                continue;
+            }else {
+                if(!first) {
+                    first = arr[i][2];
+                    if(emptyIdx < i) {
+                        arr[emptyIdx][2] = first;
+                        slideArr.push([[arr[i][0],arr[i][1], arr[i][3]], [arr[emptyIdx][0], arr[emptyIdx][1], arr[emptyIdx][3]]]);
+                        arr[i][2] = 0;
+                    }
+                }else {
+                    if(first == arr[i][2]) {
+                        first = 0;
+                        if(emptyIdx < i) {
+                            slideArr.push([[arr[i][0],arr[i][1], arr[i][3]], [arr[emptyIdx][0], arr[emptyIdx][1], arr[emptyIdx][3]], arr[i][2] * 2]);
+                            arr[emptyIdx++][2] = arr[i][2] * 2;
+                            arr[i][2] = 0;
+                        }
+                    }else {
+                        emptyIdx++;
+                        first = arr[i][2];
+                        if(emptyIdx < i) {
+                            arr[emptyIdx][2] = first;
+                            slideArr.push([[arr[i][0],arr[i][1], arr[i][3]], [arr[emptyIdx][0], arr[emptyIdx][1], arr[emptyIdx][3]]]);
+                            arr[i][2] = 0;
+                        }
+                    }
+                }
+            }
+        }
+        // console.log(JSON.stringify(arr) + ' => ' + JSON.stringify(slideArr));
+        return {
+            arr: arr,
+            slide: slideArr
+        };
+    }
+
+    function mergeSameNumberTest(arr) {
+        var arra = [].concat([], arr);
+        var emptyIdx = 0, first, slideArr = [], len = arr.length;
+        for(var i = 0; i < len; i++) {
+            if(arr[i] == 0) {
+                continue;
+            }else {
+                if(!first) {
+                    first = arr[i];
+                    if(emptyIdx < i) {
+                        arr[emptyIdx] = first;
+                        slideArr.push([i, emptyIdx]);
+                        arr[i] = 0;
+                    }
+                }else {
+                    if(first == arr[i]) {
+                        first = 0;
+                        if(emptyIdx < i) {
+                            slideArr.push([i, emptyIdx]);
+                            arr[emptyIdx++] = arr[i] * 2;
+                            arr[i] = 0;
+                        }
+                    }else {
+                        emptyIdx++;
+                        first = arr[i];
+                        if(emptyIdx < i) {
+                            arr[emptyIdx] = arr[i];
+                            slideArr.push([i, emptyIdx]);
+                            arr[i] = 0;
+                        }
+                    }
+                }
+            }
+        }
+        // console.log(arra.toString() + ' -> ' + arr.toString() + ' => ' + JSON.stringify(slideArr));
+        return arr;
+    }
+
+    //================================ test start =================================
+    var arr = new Array(0,2,4,8); // 0-9 的数
+    // var tempArr = new Array(4); // 取出的任意三个数
+    var count = 0; // 组合的个数
+    var resultStr = []; // 最后打印出的结果
+
+    // 取到任意三个数
+    // for(var i = 0; i < 4; i++){
+    //     tempArr[i] = arr[Math.floor(Math.random()*10)];
+    // }
+
+    // 排列组合
+    for(var i = 0; i < 4; i++){
+        for(var j = 0; j < 4; j++){
+            for(var k = 0; k < 4; k++){
+                for(var z = 0; z < 4; z++) {
+                    count++;
+                    resultStr.push([arr[i],arr[j],arr[k],arr[z]]);
+                }
+            }
+        }
+    }
+
+    // for(var i = 0; i < resultStr.length; i++) {
+    //     mergeSameNumberTest(resultStr[i]);
+    // }
+    //================================ test end =================================
+
+    var boardDom = document.getElementById('board'),
+        scoreDom = document.getElementById('score'),
+        bestscoreDom = document.getElementById('bestscore'),
+        bestScore = parseInt(getCookie('best_score') || 0),
+        historyScore = parseInt(getCookie('history_score') || 0),
+        historyBoard = getCookie('history_board'),
+        numberFontSize = 2;
+
+    scoreDom.innerText = historyScore;
+    bestscoreDom.innerText = bestScore;
+
+    function getHistoryBoard() {
+        if(!historyBoard) {
+            return 0;
+        }
+        var historyBoardArr = JSON.parse(historyBoard),
+            blockSize = 0;
+        for(var i = 0, len = historyBoardArr.length; i < len; i++) {
+            for(var j = 0, l = historyBoardArr[i].length; j < l; j++) {
+                var item = historyBoardArr[i][j];
+                if(item[2] > 0) {
+                    blockSize++;
+                    drawBlock(item[3], item[2]);
+                }
+            }
+        }
+        return blockSize;
+    }
+
+    function setHistoryBoard(arr) {
+        historyBoard = JSON.stringify(arr);
+        setCookie('history_board', historyBoard);
+        setCookie('history_score', scoreDom.innerText);
+    }
+
+    function destroyHistoryBoard() {
+        historyBoard = null;
+        setCookie('history_board', '', -1);
+        setCookie('history_score', '', -1);
+    }
+
+    function restart() {
+        destroyHistoryBoard();
+        scoreDom.innerText = 0;
+        bestscoreDom.innerText = bestScore;
+        document.getElementById('shadow').className = 'shadow';
+        boardArray.length = 0;
+        boardArray = createNewArray(initBoardArray);
+        var itemDom = boardDom.getElementsByTagName('span');
+        for(var i = 0; i < itemDom.length; i++) {
+            itemDom[i].className = '';
+            itemDom[i].setAttribute('style', '');
+            itemDom[i].innerText = '';
+        }
+        start();
+    }
+
+    function getInitStyle() {
+        var liDom = boardDom.getElementsByTagName('li')[0];
+        var left = liDom.offsetLeft,
+            top = liDom.offsetTop,
+            width = liDom.offsetWidth,
+            height = liDom.offsetHeight;
+        return {left: left, top: top, width: width, height: height};
+    }
+
+    function drawBlock(index, number) {
+        var num = number || createNumber(),
+            idx = index >= 0 ? index : createBlockIndex(),//2，12，14，15
+            style = getInitStyle();
+        var itemDom = boardDom.getElementsByTagName('span')[idx];
+        boardDom.style.fontSize = style.width * 0.5 + 'px';
+        boardArray[idx][2] = num;
+        itemDom.innerHTML = num;
+        itemDom.className = 'fade-in';
+        itemDom.style.fontSize = '0.8em';
+        itemDom.style.backgroundColor = colorList[num];
+        itemDom.style.lineHeight = style.height + 'px';
+    }
+
+    var countwrapDom = document.getElementById('countwrap');
+    function countScore(score) {
+        var countDom = document.createElement('em'),
+            currentScore = score + parseInt(scoreDom.innerText);
+        scoreDom.innerText = currentScore;
+        countDom.className = 'count';
+        countDom.innerHTML = '+' + score;
+        countwrapDom.appendChild(countDom);
+        var allCountDom = countwrap.getElementsByTagName('em');
+        setTimeout(function() {
+            for(var i = 0; i < allCountDom.length; i++) {
+                allCountDom[i] && removeElement(allCountDom[i]);
+            }
+        }, 600);
+        return currentScore;
+    }
+
+    function moveBlock(arr) {
+        var start = arr[0],
+            end = arr[1],
+            isMerge = arr[2] || 0,
+            style = getInitStyle();
+
+        var listDom = boardDom.getElementsByTagName('span'),
+            startIdx = start[2],
+            endIdx = end[2],
+            x = -1 * (start[1] - end[1]) * (style.width + 10) + 'px',
+            y = -1 * (start[0] - end[0]) * (style.height + 10) + 'px',
+            startDom = listDom[startIdx],
+            endDom = listDom[endIdx];
+
+        startDom.style.transform = 'translate(' + x + ', ' + y + ')';
+        startDom.style.webkitTransform = 'translate(' + x + ', ' + y + ')';
+        startDom.style.transition = 'transform 200ms ease-in-out';
+        startDom.style.webkitTransition = '-webkit-transform 200ms ease-in-out';
+        endDom.style.lineHeight = style.height + 'px';
+        endDom.style.zIndex = '1';
+
+        slideTimes++;
+
+        if(slideTimes == allSlideLen) {
+            slideTimes = 0;
+        }
+
+        startDomArr.push(startDom);
+        endDomArr.push([endDom, isMerge, startDom.innerHTML]);
+    }
+
+    function start() {
+        isSliding = 0;
+        var historyBoardSize = getHistoryBoard();
+        if(historyBoardSize == 0) {
+            drawBlock();
+            drawBlock();
+        }else if (historyBoardSize == 1) {
+            drawBlock();
+        }
+    }
+
+    function gameOver(arr) {
+        var len = arr.length,
+            emptyBlockSize = len,
+            i = 0, isGameOver = false, isSameNumber = false,
+            topIdx, rightIdx, bottomIdx, leftIdx;
+        for(; i < len; i++) {
+            if(arr[i][2] != 0) {
+                emptyBlockSize--;
+            }
+            var around = [];
+            (arr[i][0] - 1 >= 0) && around.push((arr[i][0] - 1) * 4 + arr[i][1]);
+            (arr[i][1] + 1 < 4) && around.push(arr[i][0] * 4 + (arr[i][1] + 1));
+            (arr[i][0] + 1 < 4) && around.push((arr[i][0] + 1) * 4 + arr[i][1]);
+            (arr[i][1] - 1 >= 0) && around.push(arr[i][0] * 4 + (arr[i][1] - 1));
+            for(var j = 0; j < around.length; j++) {
+                if(arr[around[j]][2] == arr[i][2]) {
+                    // console.log(around[j] + '->' + arr[around[j]][2], i + '->' + arr[i][2]);
+                    isSameNumber = true;
+                    break;
+                }
+            }
+            if(isSameNumber) {
+                break;
+            }
+        }
+        if(emptyBlockSize == 0 && !isSameNumber) {
+            isGameOver = true;
+        }
+        return isGameOver;
+    }
+
+    var slideTimes = 0, startDomArr= [], endDomArr = [], allSlideLen;
+    function move(arr) {
+        var j = 0; len = arr.length, times = 0;
+        allSlideLen = 0;
+
+        for(; j < len; j++) {
+            var mergeNumber = mergeSameNumber(arr[j]);
+                slideArr = mergeNumber['slide'],
+                slideLen = slideArr.length;
+            allSlideLen += slideArr.length;
+            for(var k = 0; k < slideLen; k++) {
+                setHistoryBoard(arr);
+                moveBlock(slideArr[k]);
+            }
+        }
+
+        setTimeout(function() {
+            var mergeEndDomArr = [];
+            var totalScore = 0;
+            for(var i = 0; i < startDomArr.length; i++) {
+                startDomArr[i].className = '';
+                startDomArr[i].style.transform = '';
+                startDomArr[i].style.webkitTransform = '';
+                startDomArr[i].style.transition = '';
+                startDomArr[i].style.webkitTransition = '';
+            }
+            for(var i = 0; i < endDomArr.length; i++) {
+                if(endDomArr[i][1] > 999) {
+                    endDomArr[i][0].style.fontSize = '0.7em';
+                }
+                endDomArr[i][0].style.zIndex = '';
+                endDomArr[i][0].innerHTML = endDomArr[i][1] || endDomArr[i][2];
+                endDomArr[i][0].style.backgroundColor = colorList[endDomArr[i][0].innerHTML];
+                // endDomArr[i][0].style.lineHeight = style.height + 'px';
+                endDomArr[i][0].className = 'show';
+                if(endDomArr[i][1]) {
+                    mergeEndDomArr.push(endDomArr[i][0]);
+                    totalScore += parseInt(endDomArr[i][0].innerHTML);
+                    endDomArr[i][0].style.animation = 'pop 200ms ease-in';
+                    endDomArr[i][0].style.webkitAnimation = 'pop 200ms ease-in';
+                }
+            }
+
+            if(totalScore) {
+                var currentScore = countScore(totalScore);
+                if(currentScore > bestScore) {
+                    bestScore = currentScore;
+                    setCookie('best_score', bestScore);
+                    bestscoreDom.innerText = bestScore;
+                }
+            }
+
+            setTimeout(function() {
+                for(var i = 0; i < mergeEndDomArr.length; i++) {
+                    mergeEndDomArr[i].style.animation = '';
+                    mergeEndDomArr[i].style.webkitAnimation = '';
+                }
+            }, 200);
+
+            isSliding = 0;
+            startDomArr.length = 0;
+            endDomArr.length = 0;
+            if (allSlideLen > 0 ) {
+                drawBlock();
+                setHistoryBoard(arr);
+            }
+        }, 200);
+    }
+
+    function slide(arr, orientation) {
+        var i = 0; len = arr.length, row = [];
+        for(; i < len; i++) {
+            var idx = (orientation == 'left' || orientation == 'right') ? arr[i][0] : arr[i][1];
+            if(row[idx] == undefined) {
+                row[idx] = [];
+            }
+            arr[i][3] = i;
+            (orientation == 'left' || orientation == 'top') ? row[idx].push(arr[i]) : row[idx].unshift(arr[i]);
+        }
+        move(row);
+    }
+
+    function checkGameOver() {
+        setTimeout(function() {
+            isSliding = 0;
+            var isGameover = gameOver(boardArray);
+            // log('checkGameOver:' + isGameover);
+            if(isGameover) {
+                isSliding = 1;
+                var thisScore = scoreDom.innerText;
+                // if(thisScore > bestScore) {
+                //     bestScore = thisScore;
+                //     setCookie('best_score', bestScore);
+                // }
+                document.getElementById('this-score').innerText = thisScore;
+                document.getElementById('shadow').className = 'shadow open';
+            }
+        }, 200);
+    }
+
+    var isSliding = 0;
+    start();
+
+    document.onkeydown = function(event) {
+        if(isSliding) {
+            return false;
+        }
+        isSliding = 1;
+        var keyCode = event.keyCode;
+        if(keyCode == 37) { //to left
+            slide(boardArray, 'left');
+        }else if(keyCode == 39) {
+            slide(boardArray, 'right');
+        }else if(keyCode == 38) {
+            slide(boardArray, 'top');
+        }else if(keyCode == 40) {
+            slide(boardArray, 'bottom');
+        }
+        checkGameOver();
+    };
+
+    var startX = 0, startY = 0, endX = 0, endY = 0, range = 8;
+
+    boardDom.addEventListener('touchstart', function(event) {
+        // event.stopPropagation();
+        event.preventDefault();
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+    }, false);
+
+    boardDom.addEventListener('touchend', function(event) {
+        // log('touchend' + isSliding);
+        if(isSliding) {
+            return false;
+        }
+        isSliding = 1;
+        endX = event.changedTouches[0].clientX;
+        endY = event.changedTouches[0].clientY;
+        var slideX = endX - startX,
+            slideY = endY - startY,
+            slideXAbs = Math.abs(slideX),
+            slideYAbs = Math.abs(slideY);
+        if(slideXAbs > range && slideXAbs > slideYAbs) {
+            if(slideX < 0) {//to left
+                 slide(boardArray, 'left');
+            }else {//to right
+                slide(boardArray, 'right');
+            }
+        }else if(slideYAbs > range && slideYAbs > slideXAbs) {
+            if(slideY > 0) {//to bottom
+                slide(boardArray, 'bottom');
+            }else {//to top
+                slide(boardArray, 'top');
+            }
+        }
+        checkGameOver();
+    }, false);
+    </script>
+</body>
+</html>
