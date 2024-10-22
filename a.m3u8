@@ -1,0 +1,7 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-PLAYLIST-TYPE:VOD
+#EXT-X-TARGETDURATION:11
+#EXTINF:10.000,
+https://defaultts.tc.qq.com/moviets.tc.qq.com/AspagjKaYcoM23Onii6u3YOQBm73xcosYt73bWRGRrUU/B_JxNyiJmktHRgresXhfyMehFSogwD0kAdn5W66hcBL1moUx3qNhj1C2sYdlqvCsXV/svp_50112/-V4CGtySyjywuNr5lbuV6QGIqSSTypKibgW-wKpLV8hKflDMDCrOjSHb7o1WwaCyvZm6z6mKh1cAj7S7DIB82Ud4fkpur54BVvY-Vk1Ek9x4xWnTEUuyYUGicjoxZb3-JxA1ZilgqaKvMjkmyWDCivn5Hb-pVK_LQZOjVgqDfQG00mduqK64gboPjw0Sbg767ATkPMqeu_SC_jEhk6bBCI6J4_iz--PQmX1G6A-kjPz1nlRyXjbG4g/068_gzc_1000102_0b53veaauaaa4yabg7bhcrrmbkodbkxqadsa.f323013.3.ts?index=68&start=790066&end=801100&brs=14995632&bre=16174391&ver=4&token=93eef91166e6fc3152fe549adcf76248
+#EXT-X-ENDLIST
